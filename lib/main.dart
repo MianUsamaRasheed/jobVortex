@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jobvortex/View/splash.dart';
+import 'package:jobvortex/View/Introductory_UI/splash.dart';
 import 'Model/utils/dimension.dart';
 
 void main() {

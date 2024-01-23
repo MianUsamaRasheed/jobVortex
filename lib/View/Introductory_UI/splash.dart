@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jobvortex/Model/utils/constant.dart';
+import 'package:jobvortex/Model/utils/colors.dart';
 import 'package:jobvortex/Model/utils/dimension.dart';
-import 'package:jobvortex/View/cleaningIntro.dart';
+import 'package:jobvortex/View/Introductory_UI/cleaningIntro.dart';
 import 'package:page_transition/page_transition.dart';
 
 class Splash extends StatefulWidget {
@@ -17,7 +17,7 @@ class _SplashState extends State<Splash> {
     // TODO: implement initState
     super.initState();
     // Add a delay of seconds (adjust as needed)
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 3), () {
       // Navigate to the main page after the delay
       Navigator.pushReplacement(context, PageTransition(type: PageTransitionType.fade, child: const CleaningIntro()));
     });
