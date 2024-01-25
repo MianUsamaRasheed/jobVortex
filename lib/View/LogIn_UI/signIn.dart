@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:jobvortex/Model/utils/colors.dart';
+import 'package:jobvortex/Model/utils/dimension.dart';
+import 'package:jobvortex/View/LogIn_UI/sharedUI_Components/login_screen_button.dart';
+import 'package:jobvortex/View/LogIn_UI/sharedUI_Components/textBtwDividers.dart';
+import 'package:jobvortex/View/LogIn_UI/sharedUI_Components/customTextField.dart';
 
 class SignIn extends StatelessWidget {
   const SignIn({super.key});
@@ -7,21 +12,22 @@ class SignIn extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.grey.shade300,
+        backgroundColor: signInBackGroundColor,
         body: Center(
           child: SingleChildScrollView(
             reverse: true,
+            physics: const BouncingScrollPhysics(),
             child: Column(
               children: [
-                const SizedBox(
-                  height: 70,
+                SizedBox(
+                  height: widgetHeight(70),
                 ),
                 const Icon(
                   Icons.lock,
                   size: 100,
                 ),
-                const SizedBox(
-                  height: 50,
+                SizedBox(
+                  height: widgetHeight(50),
                 ),
                 Text(
                   "Welcome back you've been missed!",
@@ -31,8 +37,8 @@ class SignIn extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                const SizedBox(
-                  height: 50,
+                SizedBox(
+                  height: widgetHeight(50),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -40,115 +46,54 @@ class SignIn extends StatelessWidget {
                       "UserName"
                   ),
                 ),
-                const SizedBox(
-                  height: 10,
+                SizedBox(
+                  height: widgetHeight(10),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal:30),
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: customTextField(
                       "Password"
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 7),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 30, vertical: 7),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
                         "Forget Password?",
                         style: TextStyle(
-                          color: Colors.grey[600],
+                          color: forgetPasswordTextColor,
                         ),
                       ),
                     ],
                   ),
                 ),
-                const SizedBox(
-                  height: 25,
+                SizedBox(
+                  height: widgetHeight(25),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30),
-                  child: GestureDetector(
-                    child: Container(
-                        height: 63,
-                        decoration: BoxDecoration(
-                          color: Colors.black,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: const Center(
-                          child: Text(
-                            "Sign IN",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                            ),
-                          ),
-                        )
-
-                    ),
-                  ),
+                const LoginScreenButton(
+                  buttonText: "Sign IN",
                 ),
-                const SizedBox(
-                  height: 50,
+                SizedBox(
+                  height: widgetHeight(50),
                 ),
 
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Divider(
-                          thickness: 1.5,
-                          color: Colors.grey[400],
-                        ),
-                      ),
-                      const Padding(padding: EdgeInsets.symmetric(horizontal: 10.0),
-                        child: Text("Or continue with"),
-                      ),
-                      Expanded(
-                        child: Divider(
-                          thickness: 1.5,
-                          color: Colors.grey[400],
-                        ),
-                      ),
-                    ],
-                  ),
+                const TextBtwDividers(
+                  inputText: "Don't have Account?",
                 ),
 
-                const SizedBox(
-                  height: 20,
+                SizedBox(
+                  height: widgetHeight(20),
                 ),
 
-
-                Row(
-                  children: [
-
-                  ],
-                ),
+                const LoginScreenButton(buttonText: "SignUp"),
 
               ],
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  TextField customTextField(String fieldText) {
-    String text = fieldText;
-    return TextField(
-      decoration: InputDecoration(
-        border: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(8.0),
-          ),
-
-        ),
-        hintText: text,
-        hintStyle: const TextStyle(
-          color: Colors.grey,
-        ),
-
       ),
     );
   }

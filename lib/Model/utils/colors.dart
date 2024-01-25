@@ -12,3 +12,20 @@ const List<Color> gradientColors = [
   Color(0xFF8FDEF3),
   Color(0xFF9FDBD9),
 ];
+
+
+// sign in screen colors
+
+Color? signInBackGroundColor = Colors.grey.shade300;
+Color? forgetPasswordTextColor =  Colors.grey[600];
+Color? logInScreenButtonColor =  Colors.black;
+Color? logInScreenButtonTextColor =  Colors.white;
+Color? dividerColor =  Colors.grey[400];
+Color? textFieldBorderColor = Colors.grey;
+
+
+
+
+
+
+
