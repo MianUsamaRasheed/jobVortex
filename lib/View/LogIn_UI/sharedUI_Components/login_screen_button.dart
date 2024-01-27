@@ -4,16 +4,18 @@ import 'package:jobvortex/Model/utils/colors.dart';
 
 class LoginScreenButton extends StatelessWidget {
   const LoginScreenButton({
-    super.key, required this.buttonText,
+    super.key, required this.buttonText, required this.buttonClicked,
   });
 
   final String buttonText;
+  final VoidCallback buttonClicked;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30),
+      padding: const EdgeInsets.symmetric(horizontal: 100),
       child: GestureDetector(
+        onTap: buttonClicked,
         child: Container(
             height: 63,
             decoration: BoxDecoration(

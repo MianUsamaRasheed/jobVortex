@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 Color splash_Background_Color = Color(0xFFFAFAFA);
 Color? splash_title_color =  Colors.blue[800];
-Color? cleaning_intro_color = Colors.white;
+const Color cleaning_intro_color = Colors.white;
 Color? cleaning_intro_bottom_color = Colors.blue[300];
 
 
@@ -16,16 +16,18 @@ const List<Color> gradientColors = [
 
 // sign in screen colors
 
-Color? signInBackGroundColor = Colors.grey.shade300;
+const Color signInBackGroundColor = Colors.white;
 Color? forgetPasswordTextColor =  Colors.grey[600];
-Color? logInScreenButtonColor =  Colors.black;
+const Color logInScreenButtonColor =  Colors.black;
 Color? logInScreenButtonTextColor =  Colors.white;
 Color? dividerColor =  Colors.grey[400];
-Color? textFieldBorderColor = Colors.grey;
+const Color textFieldBorderColor = Colors.grey;
+Color textColorSignInScreen =  Colors.grey.shade600;
 
 
+// Sign up screen Colors
 
-
-
+const Color signUpBackGroundColor = Colors.white;
+Color textColorSignUpScreen =  Colors.grey.shade600;
 
 
