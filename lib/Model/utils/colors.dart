@@ -30,4 +30,21 @@ Color textColorSignInScreen =  Colors.grey.shade600;
 const Color signUpBackGroundColor = Colors.white;
 Color textColorSignUpScreen =  Colors.grey.shade600;
 
+// Navigation controller Constant colors
+
+const Color iconColor = Colors.white;
+Color backgroundColorNavigationBar =  Colors.blue.shade900;
+Color backgroundColorBehindNavigationBar = Colors.transparent;
+Color buttonBackGroundColor =  Colors.blue.shade900;
+
+// Custom Card
+
+const Color containerColor = Colors.white;
+
+// Home page colors
+
+const Color homePageBackgroundColor =Color(0xFFE8F5FF);
+const Color introContainerColor = Colors.white;
+const Color homePageTextColor = Colors.lightBlueAccent;
+const Color homePageDividerColor = Colors.white;
 

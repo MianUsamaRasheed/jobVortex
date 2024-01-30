@@ -5,8 +5,11 @@ class Notifications extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return  Scaffold(
       backgroundColor: Colors.yellow,
+      body: Container(
+        color: Colors.green,
+      ),
     );
   }
 }

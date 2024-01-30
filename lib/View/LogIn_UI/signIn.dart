@@ -5,7 +5,7 @@ import 'package:jobvortex/View/LogIn_UI/sharedUI_Components/login_screen_button.
 import 'package:jobvortex/View/LogIn_UI/sharedUI_Components/textBtwDividers.dart';
 import 'package:jobvortex/View/LogIn_UI/sharedUI_Components/customTextField.dart';
 import 'package:jobvortex/View/LogIn_UI/signUp.dart';
-import 'package:jobvortex/View/home_UI/home.dart';
+import 'package:jobvortex/Controller/navigationController.dart';
 
 class SignIn extends StatelessWidget {
   const SignIn({super.key});
@@ -82,7 +82,7 @@ class SignIn extends StatelessWidget {
                   buttonClicked: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const Home()),
+                      MaterialPageRoute(builder: (context) => const NavigationController(),),
                     );
                   },
                 ),
@@ -116,7 +116,7 @@ class SignIn extends StatelessWidget {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => SignUp()),
+                          MaterialPageRoute(builder: (context) => const SignUp()),
                         );
                       },
                       child: const Text(
