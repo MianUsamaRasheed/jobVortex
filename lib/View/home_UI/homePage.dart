@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:jobvortex/Model/utils/colors.dart';
 import 'package:jobvortex/Model/utils/dimension.dart';
+import 'package:jobvortex/View/home_UI/services_UI/electricianService.dart';
+import 'package:jobvortex/View/home_UI/services_UI/hvacTechnician.dart';
+import 'package:jobvortex/View/home_UI/services_UI/maidService.dart';
+import 'package:jobvortex/View/home_UI/services_UI/plumberService.dart';
 import 'package:jobvortex/View/home_UI/shared_Ui_components/homePageDivider.dart';
 import 'package:jobvortex/View/home_UI/shared_Ui_components/offersCard.dart';
 import 'package:jobvortex/View/home_UI/shared_Ui_components/servicesCard.dart';
@@ -11,6 +15,12 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List navigationList = const [
+      MaidService(),
+      ElectricianService(),
+      HvacTechnicianService(),
+      PlumberService(),
+    ];
     return SafeArea(
       bottom: false,
       child: Scaffold(
@@ -62,6 +72,13 @@ class HomePage extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   return ServicesCard(
                     num: index,
+                    onClick: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => navigationList[index]),
+                      );
+                    },
                   );
                 },
                 separatorBuilder: (BuildContext context, int index) {

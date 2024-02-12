@@ -48,3 +48,20 @@ const Color introContainerColor = Colors.white;
 const Color homePageTextColor = Colors.lightBlueAccent;
 const Color homePageDividerColor = Colors.white;
 
+
+// bookmark page colors
+
+const Color bookmarkPageBackgroundColor =Color(0xFFE8F5FF);
+
+// electrician service
+
+const Color electricianServicePageBackgroundColor =Color(0xFFE8F5FF);
+Color electricianServiceAppBarBackGroundColor =  Colors.blue.shade900;
+const Color electricianServiceAppBarIconColor = Colors.white;
+const Color electricianServiceAppBarTextColor = Colors.white;
+const Color electricianServiceBoxShadowColor = Colors.grey;
+const Color electricianServiceContainerColor = Colors.white;
+Color electricianServiceIconColor =  Colors.blue.shade900;
+Color? electricianServiceRatingColor =  Colors.grey[400];
+
+
