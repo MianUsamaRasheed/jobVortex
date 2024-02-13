@@ -3,12 +3,24 @@ import 'package:jobvortex/Model/utils/colors.dart';
 import 'package:jobvortex/Model/utils/dimension.dart';
 
 class CustomTile extends StatelessWidget {
-  const CustomTile({
-    super.key, required this.onClick,
-  });
   final VoidCallback onClick;
+  final String service;
+  final String name;
+  final String reviewRating;
+  final String pricePkr;
+  final String imagePath;
+  const CustomTile({
+    super.key,
+    required this.onClick,
+    required this.service,
+    required this.name,
+    required this.reviewRating,
+    required this.pricePkr,
+    required this.imagePath
+  });
   @override
   Widget build(BuildContext context) {
+    initMediaQuerySize(context);
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: GestureDetector(
@@ -26,7 +38,7 @@ class CustomTile extends StatelessWidget {
             ],
           ),
 
-          height: widgetHeight(100),
+          height: widgetHeight(140),
 
           child: Padding(
             padding: const EdgeInsets.all(10.0),
@@ -34,12 +46,15 @@ class CustomTile extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8),
-                  child: SizedBox(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10)
+                    ),
                     child: Image.asset(
-                      'images/clientPic.jpg',
-                      fit: BoxFit.fill,
-                      height: widgetHeight(75),
-                      width: widgetWidth(75),
+                      imagePath.toString(),
+                      fit: BoxFit.cover,
+                      height: widgetHeight(110),
+                      width: widgetWidth(85),
                     ),
                   ),
                 ),
@@ -49,58 +64,74 @@ class CustomTile extends StatelessWidget {
                 Expanded(
                   flex: 2,
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    // crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'House Wiring',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
+                      Padding(
+                        padding: EdgeInsets.only(right: widgetWidth(2)),
+                        child: Container(
+                          height: 25,
+                          width: 250,
+                          child: Text(
+                          service.toString(),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
+                          ),
+                        
                         ),
-
+                        )
                       ),
                       SizedBox(
                         height: widgetHeight(6),
                       ),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.person,
-                            color: electricianServiceIconColor,
-                          ),
-                          SizedBox(
-                            width: widgetWidth(5),
-                          ),
-                          const Text(
-                              'Usama'
-                          ),
-                        ],
+                      Padding(
+                        padding: EdgeInsets.only(right: widgetWidth(10)),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.person,
+                              color: electricianServiceIconColor,
+                            ),
+                            SizedBox(
+                              width: widgetWidth(5),
+                            ),
+                            Text(
+                                name.toString()
+                            ),
+                          ],
+                        ),
                       ),
                       SizedBox(
-                        height: widgetHeight(5),
+                        height: widgetHeight(10),
                       ),
-                      Text(
-                        '(3.4) ⭐',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          color: electricianServiceRatingColor,
+                      Padding(
+                        padding: EdgeInsets.only(right: widgetWidth(105)),
+                        child: Text(
+                          '${reviewRating.toString()} ⭐',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            color: electricianServiceRatingColor,
+                            fontSize: 14
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
-                const Expanded(
+                Expanded(
                   flex: 1,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.bookmark_border_outlined,
                         size: 28,
                       ),
                       Text(
-                        '1000 pkr',
-                        style: TextStyle(
+                        '${pricePkr.toString()} pkr',
+                        style: const TextStyle(
                           fontSize: 18,
                         ),
                       ),
