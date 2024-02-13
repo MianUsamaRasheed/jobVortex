@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jobvortex/Model/utils/colors.dart';
-import 'package:jobvortex/Model/utils/dimension.dart';
+// import 'package:jobvortex/Model/utils/dimension.dart';
 import 'package:jobvortex/View/home_UI/services_UI/sharedUI/CustomTile.dart';
 
 class ElectricianService extends StatelessWidget {

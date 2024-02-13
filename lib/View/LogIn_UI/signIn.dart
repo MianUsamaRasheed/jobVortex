@@ -12,124 +12,125 @@ class SignIn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    initMediaQuerySize(context);
     return SafeArea(
       child: Scaffold(
         backgroundColor: signInBackGroundColor,
-        body: Center(
-          child: SingleChildScrollView(
-            reverse: true,
-            physics: const BouncingScrollPhysics(),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: widgetHeight(20),
+        body: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Column(
+            children: [
+              SizedBox(
+                height: widgetHeight(20),
+              ),
+              const Icon(
+                Icons.lock_outline,
+                size: 100,
+              ),
+              SizedBox(
+                height: widgetHeight(30),
+              ),
+              Text(
+                "Welcome back you've been missed!",
+                style: TextStyle(
+                  color: textColorSignInScreen,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w500,
                 ),
-                const Icon(
-                  Icons.lock_outline,
-                  size: 100,
+              ),
+              SizedBox(
+                height: widgetHeight(50),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: widgetWidth(30)),
+                child: const CustomTextField(
+                  text: "User Email",
+                  textFieldIcon: Icon(Icons.email),
                 ),
-                SizedBox(
-                  height: widgetHeight(30),
+              ),
+              SizedBox(
+                height: widgetHeight(10),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: widgetWidth(30)),
+                child: const CustomTextField(
+                  text: "Password",
+                  textFieldIcon: Icon(Icons.lock),
                 ),
-                Text(
-                  "Welcome back you've been missed!",
-                  style: TextStyle(
-                    color: textColorSignInScreen,
-                    fontSize: 17,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                SizedBox(
-                  height: widgetHeight(50),
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 30),
-                  child: CustomTextField(
-                    text: "User Email",
-                    textFieldIcon: Icon(Icons.email),
-                  ),
-                ),
-                SizedBox(
-                  height: widgetHeight(10),
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 30),
-                  child: CustomTextField(
-                    text: "Password",
-                    textFieldIcon: Icon(Icons.lock),
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 30, vertical: 7),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        "Forget Password?",
-                        style: TextStyle(
-                          color: forgetPasswordTextColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: widgetHeight(25),
-                ),
-                LoginScreenButton(
-                  buttonText: "Sign IN",
-                  buttonClicked: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const NavigationController(),),
-                    );
-                  },
-                ),
-                SizedBox(
-                  height: widgetHeight(30),
-                ),
-                const TextBtwDividers(
-                  inputText: "OR",
-                ),
-                SizedBox(
-                  height: widgetHeight(20),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 7),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Image.asset('icons/google.png'),
+                    Text(
+                      "Forget Password?",
+                      style: TextStyle(
+                        color: forgetPasswordTextColor,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: widgetHeight(25),
+              ),
+              LoginScreenButton(
+                buttonText: "Sign In",
+                buttonClicked: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const NavigationController(),),
+                  );
+                },
+              ),
+              SizedBox(
+                height: widgetHeight(30),
+              ),
+              const TextBtwDividers(
+                inputText: "OR",
+              ),
+              SizedBox(
+                height: widgetHeight(20),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  AuthTile(
+                    ImagePath: 'icons/google.png',
+                    onTap: () {}
+                    ),
                     SizedBox(
-                      width: widgetWidth(25),
+                      width: widgetWidth(20),
                     ),
-                    Image.asset('icons/facebook.png'),
-                  ],
-                ),
-                SizedBox(
-                  height: widgetHeight(25),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text("Don't have account? "),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const SignUp()),
-                        );
-                      },
-                      child: const Text(
-                        "'Register here'",
-                        style: TextStyle(
-                          color: Colors.blue,
-                        ),
+                  AuthTile(ImagePath: 'icons/facebook.png', onTap: () {})
+                ],
+              ),
+              SizedBox(
+                height: widgetHeight(25),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("Don't have account? "),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const SignUp()),
+                      );
+                    },
+                    child: const Text(
+                      "'Register here'",
+                      style: TextStyle(
+                        color: Colors.blue,
                       ),
                     ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),

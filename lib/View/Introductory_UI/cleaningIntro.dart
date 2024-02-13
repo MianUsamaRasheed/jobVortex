@@ -10,12 +10,15 @@ class CleaningIntro extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    initMediaQuerySize(context);
     return SafeArea(
       child: Scaffold(
         backgroundColor: cleaning_intro_color,
         body: Column(
           children: [
             SizedBox(
+              height: widgetHeight(350),
+              width: widgetWidth(350),
               child: Image.asset('images/cleaningIntro.jpg'),
             ),
             SizedBox(

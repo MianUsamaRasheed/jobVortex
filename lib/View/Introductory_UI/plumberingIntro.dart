@@ -10,12 +10,15 @@ class PlumberIntro extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    initMediaQuerySize(context);
     return SafeArea(
       child: Scaffold(
         backgroundColor: cleaning_intro_color,
         body: Column(
           children: [
             SizedBox(
+              height: widgetHeight(350),
+              width: widgetWidth(350),
               child: Image.asset('images/plumberIntro.jpg'),
             ),
             SizedBox(
@@ -23,7 +26,7 @@ class PlumberIntro extends StatelessWidget {
             ),
             Expanded(
               child: BottomSheetContainer(
-                textData: "Explore a variety of customized solutions for your plumbing needs. Our network links you with skilled professionals ready to handle leaks, clogs, and plumbing issues of any size.",
+                textData: "Find custom plumbing solutions for leaks, clogs, and more from our skilled professional network.",
                 onPressed: (){
                   Navigator.push(
                     context,
@@ -38,6 +41,6 @@ class PlumberIntro extends StatelessWidget {
           ],
         ),
       ),
-    );;
+    );
   }
 }

@@ -15,6 +15,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    initMediaQuerySize(context);
     List navigationList = const [
       MaidService(),
       ElectricianService(),
@@ -26,16 +27,21 @@ class HomePage extends StatelessWidget {
       child: Scaffold(
         extendBody: true,
         backgroundColor: homePageBackgroundColor,
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              child: Container(
-                margin: const EdgeInsets.only(top: 10),
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                height: widgetHeight(100),
+                width: widgetWidth(365),
+                margin: EdgeInsets.only(top: widgetHeight(10)),
                 color: introContainerColor,
                 child: Padding(
-                  padding: const EdgeInsets.only(
-                      right: 15, left: 15, top: 23, bottom: 23),
+                  padding: EdgeInsets.only(
+                      right: widgetWidth(15),
+                      left: widgetWidth(15),
+                      top: widgetHeight(10),
+                      bottom: widgetHeight(10)),
                   child: Row(
                     children: [
                       const Expanded(
@@ -59,62 +65,62 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-            const HomePageDivider(),
-            const HomePageText(text: "Services"),
-            SizedBox(
-              height: widgetHeight(220),
-              child: ListView.separated(
-                physics: const BouncingScrollPhysics(),
-                itemCount: 4,
-                scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.all(12),
-                itemBuilder: (BuildContext context, int index) {
-                  return ServicesCard(
-                    num: index,
-                    onClick: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => navigationList[index]),
-                      );
-                    },
-                  );
-                },
-                separatorBuilder: (BuildContext context, int index) {
-                  return SizedBox(
-                    width: widgetWidth(12),
-                  );
-                },
+              const HomePageDivider(),
+              const HomePageText(text: "Services"),
+              SizedBox(
+                height: widgetHeight(300),
+                child: ListView.separated(
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: 4,
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.all(12),
+                  itemBuilder: (BuildContext context, int index) {
+                    return ServicesCard(
+                      num: index,
+                      onClick: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => navigationList[index]),
+                        );
+                      },
+                    );
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return SizedBox(
+                      width: widgetWidth(12),
+                    );
+                  },
+                ),
               ),
-            ),
-            const HomePageDivider(),
-            const HomePageText(
-              text: "Coming Soon! 😀 ",
-            ),
-            SizedBox(
-              height: widgetHeight(220),
-              child: ListView.separated(
-                physics: const BouncingScrollPhysics(),
-                itemCount: 2,
-                scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.all(12),
-                itemBuilder: (BuildContext context, int index) {
-                  return OffersCard(
-                    num: index,
-                  );
-                },
-                separatorBuilder: (BuildContext context, int index) {
-                  return SizedBox(
-                    width: widgetWidth(12),
-                  );
-                },
+              const HomePageDivider(),
+              const HomePageText(
+                text: "Coming Soon! 😀 ",
               ),
-            ),
-            SizedBox(
-              height: widgetHeight(120),
-            )
-          ],
+              SizedBox(
+                height: widgetHeight(320),
+                child: ListView.separated(
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: 2,
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.all(12),
+                  itemBuilder: (BuildContext context, int index) {
+                    return OffersCard(
+                      num: index,
+                    );
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return SizedBox(
+                      width: widgetWidth(12),
+                    );
+                  },
+                ),
+              ),
+              SizedBox(
+                height: widgetHeight(120),
+              )
+            ],
+          ),
         ),
       ),
     );

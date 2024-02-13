@@ -2,18 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:jobvortex/Model/utils/colors.dart';
 import 'package:jobvortex/Model/utils/dimension.dart';
 
-
 class BottomSheetContainer extends StatelessWidget {
   const BottomSheetContainer({
     super.key,
     required this.textData,
     required this.onPressed,
-
   });
   final String textData;
   final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
+    initMediaQuerySize(context);
     return Container(
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
@@ -23,15 +22,21 @@ class BottomSheetContainer extends StatelessWidget {
         gradient: LinearGradient(
           colors: gradientColors,
           begin: Alignment.topLeft,
-          end:  Alignment.topRight,
-        ) ,
+          end: Alignment.topRight,
+        ),
       ),
-      padding: const EdgeInsets.only(top: 30,),
+      padding: EdgeInsets.only(
+        top: widgetHeight(40),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Padding(
-            padding: const EdgeInsets.all(50.0),
+            padding: EdgeInsets.only(
+                top: widgetHeight(50),
+                bottom: widgetHeight(50),
+                left: widgetWidth(50),
+                right: widgetWidth(50)),
             child: Text(
               textData,
               style: const TextStyle(
@@ -39,23 +44,23 @@ class BottomSheetContainer extends StatelessWidget {
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
               ),
-
             ),
           ),
-
-
           Padding(
-            padding: const EdgeInsets.only(left: 110,right: 110),
+            padding: EdgeInsets.only(
+                left: widgetWidth(110), right: widgetWidth(110)),
             child: GestureDetector(
               onTap: onPressed,
               child: Container(
-                padding: const EdgeInsets.only(left: 30,right: 30),
-                width: widgetWidth(100),
-                height: widgetHeight(50),
+                padding: EdgeInsets.only(
+                    left: widgetWidth(30), right: widgetWidth(30)),
+                width: widgetWidth(90),
+                height: widgetHeight(60),
                 decoration: const BoxDecoration(
                   color: Colors.blue,
-                  borderRadius: BorderRadius.all(Radius.circular(20),),
-
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(20),
+                  ),
                 ),
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -71,13 +76,11 @@ class BottomSheetContainer extends StatelessWidget {
                       Icons.arrow_forward,
                       size: 30,
                     ),
-
                   ],
                 ),
               ),
             ),
           ),
-
         ],
       ),
     );
