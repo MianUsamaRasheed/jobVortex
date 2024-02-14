@@ -34,6 +34,7 @@ Color textColorSignUpScreen =  Colors.grey.shade600;
 
 const Color iconColor = Colors.white;
 Color backgroundColorNavigationBar =  Colors.blue.shade900;
+Color blueAppThemeColor =  Colors.blue.shade900;
 Color backgroundColorBehindNavigationBar = Colors.transparent;
 Color buttonBackGroundColor =  Colors.blue.shade900;
 
@@ -46,12 +47,15 @@ const Color containerColor = Colors.white;
 const Color homePageBackgroundColor =Color(0xFFE8F5FF);
 const Color introContainerColor = Colors.white;
 const Color homePageTextColor = Colors.lightBlueAccent;
+const Color lightBlueAppTheme = Colors.lightBlueAccent;
 const Color homePageDividerColor = Colors.white;
 
 
 // bookmark page colors
 
 const Color bookmarkPageBackgroundColor =Color(0xFFE8F5FF);
+const Color extraLightBlueAppTheme =Color(0xFFE8F5FF);
+
 
 // electrician service
 
@@ -65,32 +69,3 @@ Color electricianServiceIconColor =  Colors.blue.shade900;
 Color? electricianServiceRatingColor =  Colors.grey[400];
 
 
-class AuthTile extends StatelessWidget {
-  final String ImagePath;
-  final Function()? onTap;
-  const AuthTile({super.key, 
-    required this.ImagePath,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-          padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-              border: Border.all(
-                  color: Colors.grey.shade200
-              ),
-              borderRadius: BorderRadius.circular(16),
-              color: Colors.grey[100]
-          ),
-          child: Image.asset(
-            ImagePath,
-            height: 40,
-          )
-      ),
-    );
-  }
-}

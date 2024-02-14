@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jobvortex/Model/custom_widgets/customs.dart';
 import 'package:jobvortex/Model/utils/colors.dart';
 import 'package:jobvortex/Model/utils/dimension.dart';
 import 'package:jobvortex/View/LogIn_UI/sharedUI_Components/login_screen_button.dart';
