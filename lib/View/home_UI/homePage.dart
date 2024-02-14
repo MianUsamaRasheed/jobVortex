@@ -68,7 +68,7 @@ class HomePage extends StatelessWidget {
               const HomePageDivider(),
               const HomePageText(text: "Services"),
               SizedBox(
-                height: widgetHeight(300),
+                height: widgetHeight(250),
                 child: ListView.separated(
                   physics: const BouncingScrollPhysics(),
                   itemCount: 4,
@@ -98,7 +98,7 @@ class HomePage extends StatelessWidget {
                 text: "Coming Soon! 😀 ",
               ),
               SizedBox(
-                height: widgetHeight(320),
+                height: widgetHeight(240),
                 child: ListView.separated(
                   physics: const BouncingScrollPhysics(),
                   itemCount: 2,

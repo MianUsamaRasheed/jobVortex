@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jobvortex/Model/utils/colors.dart';
 import 'package:jobvortex/Model/utils/dimension.dart';
+import 'package:jobvortex/View/home_UI/services_UI/sharedUI/bill_Page.dart';
 
 class WorkerDetails extends StatelessWidget {
   final String? service;
@@ -17,6 +18,13 @@ class WorkerDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Map<String,String> workerInformation = {
+      "Age" : "22",
+      "Experience" : "2 years",
+      "Education" : "Metric Pass",
+      "HomeTown" : "Islamabad",
+      "Expertise": "Electric Wiring"
+    };
     initMediaQuerySize(context);
     return Scaffold(
       backgroundColor: electricianServicePageBackgroundColor,
@@ -37,31 +45,37 @@ class WorkerDetails extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              height: widgetHeight(350),
+              height: widgetHeight(300),
               width: double.infinity,
-              color: const Color(0x6047a3d4),
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                    colors: [
+                        Color(0xFFBFDDFD),
+                        Color(0xFFB0D2FF),
+                        Color(0xFF8FDEF3),
+                        Color(0xFF9FDBD9),
+                    ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.topRight,
+                )
+              ),
+              //color: const Color(0x6047a3d4),
               child: Column(
                 children: [
                   SizedBox(
                     height: widgetHeight(20),
                   ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(100),
-                    child: Image.asset(
-                      imagePath.toString(),
-                      fit: BoxFit.cover,
-                      height: widgetHeight(200),
-                      width: widgetWidth(150),
-                    ),
+                  CircleAvatar(
+                    radius: 90,
+                    backgroundImage: AssetImage(imagePath.toString(),),
                   ),
                   SizedBox(
                     height: widgetHeight(20),
                   ),
                   Text(
                     name.toString(),
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 20,
-                      color: Colors.white,
                     ),
                   ),
                   SizedBox(
@@ -69,38 +83,122 @@ class WorkerDetails extends StatelessWidget {
                   ),
                   Text(
                     service.toString(),
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 20,
-                      color: Colors.white,
                     ),
                   )
                 ],
               ),
             ),
             SizedBox(
-              height: widgetHeight(60),
+              height: widgetHeight(20),
             ),
-            Padding(
-              padding: EdgeInsets.only(left: widgetWidth(110)),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.money,
-                    size: 35,
-                    color: electricianServiceAppBarBackGroundColor,
-                  ),
-                  SizedBox(
-                    width: widgetWidth(50),
-                  ),
-                  Text(
-                    "${pricePkr.toString()} Pkr",
-                    style: const TextStyle(fontSize: 20),
-                  )
-                ],
+            // Padding(
+            //   padding: EdgeInsets.only(left: widgetWidth(110)),
+            //   child: Row(
+            //     children: [
+            //       Icon(
+            //         Icons.money,
+            //         size: 35,
+            //         color: electricianServiceAppBarBackGroundColor,
+            //       ),
+            //       SizedBox(
+            //         width: widgetWidth(50),
+            //       ),
+            //       Text(
+            //         "${pricePkr.toString()} Pkr",
+            //         style: const TextStyle(fontSize: 20),
+            //       )
+            //     ],
+            //   ),
+            // )
+            SizedBox(
+              height: widgetHeight(300),
+              child: ListView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: workerInformation.length,
+                  itemBuilder: (BuildContext context, int index){
+                    String key = workerInformation.keys.elementAt(index);
+                    String value = workerInformation.values.elementAt(index);
+                    return CustomWorkerListTile(
+                        leadingText: key,
+                        trailingText: value,
+                    );
+                  }
               ),
-            )
+            ),
+            SizedBox(
+              height: widgetHeight(30),
+            ),
+            GestureDetector(
+              onTap: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => BillPage(
+                  imagePath: imagePath,
+                  name: name,
+                  pricePkr: pricePkr,
+                  service: service,
+                ),),);
+              },
+              child: Container(
+                color: Colors.blue.shade900 ,
+                height: widgetHeight(70),
+                width: widgetWidth(double.infinity),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                        "Order Now",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    ),
+                    SizedBox(
+                      width: widgetWidth(15),
+                    ),
+                    const Icon(
+                        Icons.arrow_forward,
+                        color: Colors.white,
+                    )
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class CustomWorkerListTile extends StatelessWidget {
+  const CustomWorkerListTile({
+    super.key, required this.leadingText, required this.trailingText,
+  });
+  final String leadingText;
+  final String trailingText;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: widgetHeight(7),),
+      child: ListTile(
+        tileColor: const Color(0x6047a3d4),
+        leading: Text(
+          leadingText,
+          style: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        trailing: Text(
+          trailingText,
+          style: const TextStyle(
+            fontSize: 15,
+          ),
+        ),
+
       ),
     );
   }
