@@ -82,7 +82,9 @@ class SignIn extends StatelessWidget {
                 buttonClicked: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const NavigationController(),),
+                    MaterialPageRoute(
+                      builder: (context) => const NavigationController(),
+                    ),
                   );
                 },
               ),
@@ -98,13 +100,10 @@ class SignIn extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  AuthTile(
-                    ImagePath: 'icons/google.png',
-                    onTap: () {}
-                    ),
-                    SizedBox(
-                      width: widgetWidth(20),
-                    ),
+                  AuthTile(ImagePath: 'icons/google.png', onTap: () {}),
+                  SizedBox(
+                    width: widgetWidth(20),
+                  ),
                   AuthTile(ImagePath: 'icons/facebook.png', onTap: () {})
                 ],
               ),

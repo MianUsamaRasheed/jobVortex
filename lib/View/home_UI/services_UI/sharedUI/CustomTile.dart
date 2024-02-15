@@ -9,15 +9,14 @@ class CustomTile extends StatelessWidget {
   final String reviewRating;
   final String pricePkr;
   final String imagePath;
-  const CustomTile({
-    super.key,
-    required this.onClick,
-    required this.service,
-    required this.name,
-    required this.reviewRating,
-    required this.pricePkr,
-    required this.imagePath
-  });
+  const CustomTile(
+      {super.key,
+      required this.onClick,
+      required this.service,
+      required this.name,
+      required this.reviewRating,
+      required this.pricePkr,
+      required this.imagePath});
   @override
   Widget build(BuildContext context) {
     initMediaQuerySize(context);
@@ -33,13 +32,10 @@ class CustomTile extends StatelessWidget {
               BoxShadow(
                   color: electricianServiceBoxShadowColor,
                   blurRadius: 3.0,
-                  offset: Offset(5, 5)
-              )
+                  offset: Offset(5, 5))
             ],
           ),
-
-          height: widgetHeight(140),
-
+          height: widgetHeight(110),
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: Row(
@@ -47,9 +43,8 @@ class CustomTile extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8),
                   child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10)
-                    ),
+                    decoration:
+                        BoxDecoration(borderRadius: BorderRadius.circular(10)),
                     child: Image.asset(
                       imagePath.toString(),
                       fit: BoxFit.cover,
@@ -67,22 +62,20 @@ class CustomTile extends StatelessWidget {
                     // crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(right: widgetWidth(2)),
-                        child: Container(
-                          height: 25,
-                          width: 250,
-                          child: Text(
-                          service.toString(),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                          ),
-                        
-                        ),
-                        )
-                      ),
+                          padding: EdgeInsets.only(right: widgetWidth(2)),
+                          child: Container(
+                            height: 25,
+                            width: 250,
+                            child: Text(
+                              service.toString(),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16,
+                              ),
+                            ),
+                          )),
                       SizedBox(
                         height: widgetHeight(6),
                       ),
@@ -97,9 +90,7 @@ class CustomTile extends StatelessWidget {
                             SizedBox(
                               width: widgetWidth(5),
                             ),
-                            Text(
-                                name.toString()
-                            ),
+                            Text(name.toString()),
                           ],
                         ),
                       ),
@@ -111,10 +102,9 @@ class CustomTile extends StatelessWidget {
                         child: Text(
                           '${reviewRating.toString()} ⭐',
                           style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            color: electricianServiceRatingColor,
-                            fontSize: 14
-                          ),
+                              fontWeight: FontWeight.w500,
+                              color: electricianServiceRatingColor,
+                              fontSize: 14),
                         ),
                       ),
                     ],

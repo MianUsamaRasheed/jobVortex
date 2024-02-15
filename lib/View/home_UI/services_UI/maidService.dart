@@ -36,18 +36,18 @@ class MaidService extends StatelessWidget {
             name: maidServicesWorkers[index],
             reviewRating: maidServicesReviews[index],
             pricePkr: maidServicesPrices[index],
-            onClick: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => WorkerDetails(
-                imagePath: maidImages[index],
-                name: maidServicesWorkers[index],
-                pricePkr: maidServicesPrices[index],
-                service: maidServices[index],
-              )));
+            onClick: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => WorkerDetails(
+                        imagePath: maidImages[index],
+                        name: maidServicesWorkers[index],
+                        pricePkr: maidServicesPrices[index],
+                        service: maidServices[index],
+                      )));
             },
           );
         },
       ),
     );
   }
-
-  }
+}

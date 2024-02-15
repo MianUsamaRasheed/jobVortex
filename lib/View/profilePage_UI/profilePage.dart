@@ -10,8 +10,9 @@ class Profile extends StatelessWidget {
   Widget build(BuildContext context) {
     initMediaQuerySize(context);
     return SafeArea(
+      bottom: false,
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: const Color(0xFFE8F5FF),
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -90,40 +91,44 @@ class Profile extends StatelessWidget {
               CustomExpansionWidget(
                 leadingIcon: const Icon(Icons.person),
                 titleText: "Personal Information",
-                childWidget: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const CustomGreyText(text: "Abdullah Rashid"),
-                        SizedBox(
-                          width: widgetWidth(140),
-                        ),
-                        Container(
-                          height: widgetHeight(30),
-                          width: widgetWidth(50),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(color: blueAppThemeColor),
-                              color: extraLightBlueAppTheme),
-                          child: const Center(
-                              child: Text(
-                            "Edit",
-                            style: TextStyle(color: lightBlueAppTheme),
-                          )),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: widgetHeight(10),
-                    ),
-                    const CustomGreyText(text: "abdullahRashid01@gmail.com"),
-                    SizedBox(
-                      height: widgetHeight(10),
-                    ),
-                    const CustomGreyText(text: "+81-03093023"),
-                  ],
+                childWidget: Container(
+                  height: widgetHeight(130),
+                  width: widgetWidth(double.infinity),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const CustomGreyText(text: "Abdullah Rashid"),
+                          SizedBox(
+                            width: widgetWidth(140),
+                          ),
+                          Container(
+                            height: widgetHeight(30),
+                            width: widgetWidth(50),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                border: Border.all(color: blueAppThemeColor),
+                                color: extraLightBlueAppTheme),
+                            child: const Center(
+                                child: Text(
+                              "Edit",
+                              style: TextStyle(color: lightBlueAppTheme),
+                            )),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: widgetHeight(10),
+                      ),
+                      const CustomGreyText(text: "abdullahRashid01@gmail.com"),
+                      SizedBox(
+                        height: widgetHeight(10),
+                      ),
+                      const CustomGreyText(text: "+81-03093023"),
+                    ],
+                  ),
                 ),
               ),
               CustomExpansionWidget(
@@ -222,9 +227,7 @@ class Profile extends StatelessWidget {
                   width: widgetWidth(100),
                   child: const Text(
                     "192293839",
-                    style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 15),
+                    style: TextStyle(color: Colors.grey, fontSize: 15),
                   ),
                 ),
               )

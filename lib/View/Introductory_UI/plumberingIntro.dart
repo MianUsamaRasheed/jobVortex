@@ -26,8 +26,9 @@ class PlumberIntro extends StatelessWidget {
             ),
             Expanded(
               child: BottomSheetContainer(
-                textData: "Find custom plumbing solutions for leaks, clogs, and more from our skilled professional network.",
-                onPressed: (){
+                textData:
+                    "Find custom plumbing solutions for leaks, clogs, and more from our skilled professional network.",
+                onPressed: () {
                   Navigator.push(
                     context,
                     PageTransition(

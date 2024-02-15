@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:jobvortex/Model/utils/colors.dart';
 
-
 class TextBtwDividers extends StatelessWidget {
   const TextBtwDividers({
-    super.key, required this.inputText,
+    super.key,
+    required this.inputText,
   });
 
   final String inputText;
@@ -21,7 +21,8 @@ class TextBtwDividers extends StatelessWidget {
               color: dividerColor,
             ),
           ),
-          Padding(padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Text(inputText),
           ),
           Expanded(

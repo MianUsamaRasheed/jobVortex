@@ -26,8 +26,9 @@ class ElectricianIntro extends StatelessWidget {
             ),
             Expanded(
               child: BottomSheetContainer(
-                textData: "Our hub for all electrical solutions! Discover a spectrum of reliable electrician services tailored to your needs.",
-                onPressed: (){
+                textData:
+                    "Our hub for all electrical solutions! Discover a spectrum of reliable electrician services tailored to your needs.",
+                onPressed: () {
                   Navigator.push(
                     context,
                     PageTransition(

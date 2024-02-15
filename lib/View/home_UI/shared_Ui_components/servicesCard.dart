@@ -8,12 +8,7 @@ class ServicesCard extends StatelessWidget {
   final VoidCallback onClick;
   @override
   Widget build(BuildContext context) {
-    List<String> titles = [
-      "Maid",
-      "Electrician",
-      "HVAC technician",
-      "Plumber"
-    ];
+    List<String> titles = ["Maid", "Electrician", "HVAC technician", "Plumber"];
     return GestureDetector(
       onTap: onClick,
       child: Container(
@@ -21,20 +16,20 @@ class ServicesCard extends StatelessWidget {
           color: containerColor,
           borderRadius: BorderRadius.circular(20),
         ),
-
         width: widgetWidth(160),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
               padding: const EdgeInsets.all(15),
-              child: Image.asset("images/service${num+1}.jpg"),
+              child: Image.asset("images/service${num + 1}.jpg"),
             ),
-            Text(titles[num],
-            style: const TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize: 15,
-            ),
+            Text(
+              titles[num],
+              style: const TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 15,
+              ),
             ),
           ],
         ),

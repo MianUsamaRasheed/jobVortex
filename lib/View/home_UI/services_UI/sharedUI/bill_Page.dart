@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jobvortex/Model/utils/colors.dart';
 import 'package:jobvortex/Model/utils/dimension.dart';
+import 'package:jobvortex/View/home_UI/services_UI/sharedUI/payment_page.dart';
 
 class BillPage extends StatelessWidget {
   const BillPage(
@@ -37,16 +38,10 @@ class BillPage extends StatelessWidget {
             //color:  const Color(0x6047a3d4),
             decoration: const BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [
-                    Color(0xFFBFDDFD),
-                    Color(0xFFB0D2FF),
-                    Color(0xFF8FDEF3),
-                    Color(0xFF9FDBD9),
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.topRight,
-                )
-            ),
+              colors: gradientColors,
+              begin: Alignment.topLeft,
+              end: Alignment.topRight,
+            )),
             child: Column(
               children: [
                 const CustomOrderListTile(
@@ -68,19 +63,13 @@ class BillPage extends StatelessWidget {
             height: widgetHeight(15),
           ),
           Container(
-           // color:  const Color(0x6047a3d4),
+            // color:  const Color(0x6047a3d4),
             decoration: const BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [
-                    Color(0xFFBFDDFD),
-                    Color(0xFFB0D2FF),
-                    Color(0xFF8FDEF3),
-                    Color(0xFF9FDBD9),
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.topRight,
-                )
-            ),
+              colors: gradientColors,
+              begin: Alignment.topLeft,
+              end: Alignment.topRight,
+            )),
             child: Column(
               children: [
                 CustomOrderListTile(
@@ -101,19 +90,50 @@ class BillPage extends StatelessWidget {
             //color:  const Color(0x6047a3d4),
             decoration: const BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [
-                    Color(0xFFBFDDFD),
-                    Color(0xFFB0D2FF),
-                    Color(0xFF8FDEF3),
-                    Color(0xFF9FDBD9),
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.topRight,
-                )
-            ),
+              colors: gradientColors,
+              begin: Alignment.topLeft,
+              end: Alignment.topRight,
+            )),
             child: CustomOrderListTile(
               leadingText: "Total Bill",
               trailingText: "$pricePkr",
+            ),
+          ),
+          SizedBox(
+            height: widgetHeight(282),
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const PaymentPage(),
+                ),
+              );
+            },
+            child: Container(
+              color: Colors.blue.shade900,
+              height: widgetHeight(70),
+              width: widgetWidth(double.infinity),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    "Place Order",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  SizedBox(
+                    width: widgetWidth(15),
+                  ),
+                  const Icon(
+                    Icons.arrow_forward,
+                    color: Colors.white,
+                  )
+                ],
+              ),
             ),
           ),
         ],
@@ -122,10 +142,11 @@ class BillPage extends StatelessWidget {
   }
 }
 
-
 class CustomOrderListTile extends StatelessWidget {
   const CustomOrderListTile({
-    super.key, required this.leadingText, required this.trailingText,
+    super.key,
+    required this.leadingText,
+    required this.trailingText,
   });
   final String leadingText;
   final String trailingText;
@@ -146,7 +167,6 @@ class CustomOrderListTile extends StatelessWidget {
           fontSize: 15,
         ),
       ),
-
     );
   }
 }

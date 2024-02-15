@@ -26,15 +26,16 @@ class AirConditionerIntro extends StatelessWidget {
             ),
             Expanded(
               child: BottomSheetContainer(
-                textData: "Our network boasts skilled professionals ready to tackle any AC challenge, ensuring a refreshing and comfortable indoor environment.",
-                onPressed: (){
+                textData:
+                    "Our network boasts skilled professionals ready to tackle any AC challenge, ensuring a refreshing and comfortable indoor environment.",
+                onPressed: () {
                   Navigator.push(
                     context,
                     PageTransition(
                       type: PageTransitionType.rightToLeft,
                       child: const PlumberIntro(),
                     ),
-                 );
+                  );
                 },
               ),
             ),

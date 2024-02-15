@@ -37,13 +37,14 @@ class ElectricianService extends StatelessWidget {
             name: electricServicesWorkers[index],
             reviewRating: electricServicesReviews[index],
             pricePkr: electricServicesPrices[index],
-            onClick: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => WorkerDetails(
-                imagePath: workerImages[index],
-                name: electricServicesWorkers[index],
-                pricePkr: electricServicesPrices[index],
-                service: electricServices[index],
-              )));
+            onClick: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => WorkerDetails(
+                        imagePath: workerImages[index],
+                        name: electricServicesWorkers[index],
+                        pricePkr: electricServicesPrices[index],
+                        service: electricServices[index],
+                      )));
             },
           );
         },
@@ -51,4 +52,3 @@ class ElectricianService extends StatelessWidget {
     );
   }
 }
-

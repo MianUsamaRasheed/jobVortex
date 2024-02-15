@@ -36,13 +36,14 @@ class PlumberService extends StatelessWidget {
             name: plumberServicesWorkers[index],
             reviewRating: plumberServicesReviews[index],
             pricePkr: plumberServicesPrices[index],
-            onClick: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => WorkerDetails(
-                imagePath: plumberImages[index],
-                name: plumberServicesWorkers[index],
-                pricePkr: plumberServicesPrices[index],
-                service: plumberServices[index],
-              )));
+            onClick: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => WorkerDetails(
+                        imagePath: plumberImages[index],
+                        name: plumberServicesWorkers[index],
+                        pricePkr: plumberServicesPrices[index],
+                        service: plumberServices[index],
+                      )));
             },
           );
         },

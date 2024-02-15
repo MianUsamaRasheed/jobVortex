@@ -36,13 +36,14 @@ class HvacTechnicianService extends StatelessWidget {
             name: hvacServicesWorkers[index],
             reviewRating: hvacServicesReviews[index],
             pricePkr: hvacServicesPrices[index],
-            onClick: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => WorkerDetails(
-                imagePath: hvacImages[index],
-                name: hvacServicesWorkers[index],
-                pricePkr: hvacServicesPrices[index],
-                service: hvacServices[index],
-              )));
+            onClick: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => WorkerDetails(
+                        imagePath: hvacImages[index],
+                        name: hvacServicesWorkers[index],
+                        pricePkr: hvacServicesPrices[index],
+                        service: hvacServices[index],
+                      )));
             },
           );
         },

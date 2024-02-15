@@ -18,7 +18,6 @@ class _NavigationControllerState extends State<NavigationController> {
 
   @override
   Widget build(BuildContext context) {
-
     final screens = [
       const HomePage(),
       const BookMarks(),
@@ -30,18 +29,22 @@ class _NavigationControllerState extends State<NavigationController> {
         extendBody: true,
         body: screens[activePage],
         bottomNavigationBar: CurvedNavigationBar(
-
           index: activePage,
-          color: backgroundColorNavigationBar, // Background color of the navigation bar
-          backgroundColor: backgroundColorBehindNavigationBar, // Background color behind the navigation bar
-          buttonBackgroundColor: buttonBackGroundColor, // Background color of the navigation bar buttons
+          color:
+              backgroundColorNavigationBar, // Background color of the navigation bar
+          backgroundColor:
+              backgroundColorBehindNavigationBar, // Background color behind the navigation bar
+          buttonBackgroundColor:
+              buttonBackGroundColor, // Background color of the navigation bar buttons
           items: const [
-            Icon(Icons.home, size: 30, color: iconColor), // You can adjust the icon color here
+            Icon(Icons.home,
+                size: 30,
+                color: iconColor), // You can adjust the icon color here
             Icon(Icons.bookmark, size: 30, color: iconColor),
             Icon(Icons.notifications, size: 30, color: iconColor),
             Icon(Icons.person, size: 30, color: iconColor),
           ],
-          onTap: (index){
+          onTap: (index) {
             setState(() {
               activePage = index;
             });

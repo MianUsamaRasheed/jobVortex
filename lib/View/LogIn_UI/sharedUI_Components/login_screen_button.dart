@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:jobvortex/Model/utils/colors.dart';
 
-
 class LoginScreenButton extends StatelessWidget {
   const LoginScreenButton({
-    super.key, required this.buttonText, required this.buttonClicked,
+    super.key,
+    required this.buttonText,
+    required this.buttonClicked,
   });
 
   final String buttonText;
@@ -30,9 +31,7 @@ class LoginScreenButton extends StatelessWidget {
                   fontSize: 18,
                 ),
               ),
-            )
-
-        ),
+            )),
       ),
     );
   }

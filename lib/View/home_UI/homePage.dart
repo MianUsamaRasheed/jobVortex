@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                height: widgetHeight(100),
+                height: widgetHeight(110),
                 width: widgetWidth(365),
                 margin: EdgeInsets.only(top: widgetHeight(10)),
                 color: introContainerColor,
@@ -68,7 +68,7 @@ class HomePage extends StatelessWidget {
               const HomePageDivider(),
               const HomePageText(text: "Services"),
               SizedBox(
-                height: widgetHeight(250),
+                height: widgetHeight(230),
                 child: ListView.separated(
                   physics: const BouncingScrollPhysics(),
                   itemCount: 4,

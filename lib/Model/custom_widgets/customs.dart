@@ -14,11 +14,11 @@ class CustomGreyText extends StatelessWidget {
   }
 }
 
-
 class AuthTile extends StatelessWidget {
   final String ImagePath;
   final Function()? onTap;
-  const AuthTile({super.key, 
+  const AuthTile({
+    super.key,
     required this.ImagePath,
     required this.onTap,
   });
@@ -30,17 +30,13 @@ class AuthTile extends StatelessWidget {
       child: Container(
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
-              border: Border.all(
-                  color: Colors.grey.shade200
-              ),
+              border: Border.all(color: Colors.grey.shade200),
               borderRadius: BorderRadius.circular(16),
-              color: Colors.grey[100]
-          ),
+              color: Colors.grey[100]),
           child: Image.asset(
             ImagePath,
             height: 40,
-          )
-      ),
+          )),
     );
   }
 }
