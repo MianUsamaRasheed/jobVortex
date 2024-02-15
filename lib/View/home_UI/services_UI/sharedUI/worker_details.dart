@@ -33,6 +33,7 @@ class WorkerDetails extends StatelessWidget {
           "Worker Details",
           style: TextStyle(
             color: electricianServiceAppBarTextColor,
+            fontFamily: 'Poppins'
           ),
         ),
       ),
@@ -72,6 +73,8 @@ class WorkerDetails extends StatelessWidget {
                     name.toString(),
                     style: const TextStyle(
                       fontSize: 20,
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.bold
                     ),
                   ),
                   SizedBox(
@@ -81,6 +84,8 @@ class WorkerDetails extends StatelessWidget {
                     service.toString(),
                     style: const TextStyle(
                       fontSize: 20,
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.bold
                     ),
                   )
                 ],
@@ -131,7 +136,8 @@ class WorkerDetails extends StatelessWidget {
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Poppins'
                       ),
                     ),
                     SizedBox(
@@ -173,13 +179,15 @@ class CustomWorkerListTile extends StatelessWidget {
           leadingText,
           style: const TextStyle(
             fontSize: 16,
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Poppins'
           ),
         ),
         trailing: Text(
           trailingText,
           style: const TextStyle(
             fontSize: 15,
+            fontFamily: 'Poppins'
           ),
         ),
       ),

@@ -38,7 +38,8 @@ class Profile extends StatelessWidget {
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 18,
-                            fontWeight: FontWeight.bold),
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Poppins'),
                       ),
                       IconButton(
                           onPressed: () {},
@@ -57,7 +58,7 @@ class Profile extends StatelessWidget {
                       child: Image.asset(
                         'images/myimage.jpg',
                         height: widgetHeight(110),
-                        width: widgetWidth(80),
+                        width: widgetWidth(100),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -75,15 +76,18 @@ class Profile extends StatelessWidget {
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 20,
-                          fontWeight: FontWeight.bold),
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Poppins'),
                     ),
                   )),
               Padding(
                 padding: EdgeInsets.only(left: widgetWidth(20)),
                 child: SizedBox(
-                    height: widgetHeight(30),
+                    height: widgetHeight(20),
                     width: double.infinity,
-                    child: const CustomGreyText(text: "@abdullahr01")),
+                    child: const CustomGreyText(
+                      text: "@abdullahr01",
+                    )),
               ),
               SizedBox(
                 height: widgetHeight(20),
@@ -114,7 +118,7 @@ class Profile extends StatelessWidget {
                             child: const Center(
                                 child: Text(
                               "Edit",
-                              style: TextStyle(color: lightBlueAppTheme),
+                              style: TextStyle(color: lightBlueAppTheme, fontFamily: 'Poppins'),
                             )),
                           )
                         ],
@@ -144,7 +148,7 @@ class Profile extends StatelessWidget {
                         style: TextStyle(
                             color: Colors.grey,
                             fontWeight: FontWeight.bold,
-                            fontSize: 17),
+                            fontSize: 17, fontFamily: 'Poppins'),
                       ),
                     ),
                   )),
@@ -176,16 +180,20 @@ class Profile extends StatelessWidget {
                         style: TextStyle(
                             color: Colors.grey,
                             fontWeight: FontWeight.bold,
-                            fontSize: 15),
+                            fontSize: 15, fontFamily: 'Poppins'),
                       ),
                     ),
                   )),
               CustomExpansionWidget(
                   leadingIcon: const Icon(Icons.power_settings_new_outlined),
                   titleText: "Log out",
-                  childWidget: Row(
+                  childWidget: DummyGreyContainer(
+                    heightD: widgetHeight(80),
+                    widthD: widgetWidth(280),
+                    colorVisible: false,
+                    child: Row(
                     children: [
-                      const CustomGreyText(text: "Log out "),
+                      const CustomGreyText(text: "Log out ",),
                       SizedBox(
                         width: widgetWidth(90),
                       ),
@@ -195,6 +203,7 @@ class Profile extends StatelessWidget {
                           height: widgetHeight(60),
                           width: widgetWidth(90),
                           decoration: BoxDecoration(
+                            border: Border.all(color: Colors.red),
                               borderRadius: BorderRadius.circular(20),
                               color: Colors.red[100]),
                           child: const Center(
@@ -206,7 +215,8 @@ class Profile extends StatelessWidget {
                         ),
                       ),
                     ],
-                  )),
+                  ))
+                  ),
               SizedBox(
                 height: widgetHeight(20),
               ),
@@ -217,7 +227,7 @@ class Profile extends StatelessWidget {
                   style: TextStyle(
                       color: Colors.black,
                       fontSize: 18,
-                      fontWeight: FontWeight.bold),
+                      fontWeight: FontWeight.bold, fontFamily: "Poppins"),
                 ),
               ),
               Padding(
@@ -227,7 +237,7 @@ class Profile extends StatelessWidget {
                   width: widgetWidth(100),
                   child: const Text(
                     "192293839",
-                    style: TextStyle(color: Colors.grey, fontSize: 15),
+                    style: TextStyle(color: Colors.grey, fontSize: 15, fontFamily: "Poppins"),
                   ),
                 ),
               )

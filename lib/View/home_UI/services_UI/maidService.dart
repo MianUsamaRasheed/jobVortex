@@ -23,6 +23,7 @@ class MaidService extends StatelessWidget {
           "Maid Service",
           style: TextStyle(
             color: electricianServiceAppBarTextColor,
+            fontFamily: 'Poppins'
           ),
         ),
       ),

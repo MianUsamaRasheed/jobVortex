@@ -71,8 +71,10 @@ class CustomTile extends StatelessWidget {
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: const TextStyle(
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.bold,
                                 fontSize: 16,
+                                fontFamily: 'Poppins'
+
                               ),
                             ),
                           )),
@@ -90,7 +92,7 @@ class CustomTile extends StatelessWidget {
                             SizedBox(
                               width: widgetWidth(5),
                             ),
-                            Text(name.toString()),
+                            Text(name.toString(), style: TextStyle(fontFamily: 'Poppins'),),
                           ],
                         ),
                       ),
@@ -104,7 +106,7 @@ class CustomTile extends StatelessWidget {
                           style: TextStyle(
                               fontWeight: FontWeight.w500,
                               color: electricianServiceRatingColor,
-                              fontSize: 14),
+                              fontSize: 14, fontFamily: 'Poppins'),
                         ),
                       ),
                     ],
@@ -123,6 +125,7 @@ class CustomTile extends StatelessWidget {
                         '${pricePkr.toString()} pkr',
                         style: const TextStyle(
                           fontSize: 18,
+                          fontFamily: 'Poppins'
                         ),
                       ),
                     ],

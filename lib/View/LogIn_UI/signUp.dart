@@ -35,7 +35,8 @@ class SignUp extends StatelessWidget {
                   style: TextStyle(
                     color: textColorSignUpScreen,
                     fontSize: 17,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: "Poppins"
                   ),
                 ),
                 SizedBox(

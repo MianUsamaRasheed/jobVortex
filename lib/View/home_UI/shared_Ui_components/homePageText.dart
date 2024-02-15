@@ -19,6 +19,7 @@ class HomePageText extends StatelessWidget {
           fontSize: 18,
           fontWeight: FontWeight.w500,
           color: homePageTextColor,
+          fontFamily: 'Poppins'
         ),
       ),
     );

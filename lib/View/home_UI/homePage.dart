@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jobvortex/Model/custom_widgets/customs.dart';
 import 'package:jobvortex/Model/utils/colors.dart';
 import 'package:jobvortex/Model/utils/dimension.dart';
 import 'package:jobvortex/View/home_UI/services_UI/electricianService.dart';
@@ -44,15 +45,45 @@ class HomePage extends StatelessWidget {
                       bottom: widgetHeight(10)),
                   child: Row(
                     children: [
-                      const Expanded(
-                        child: Text(
-                          "Hello, Usama!"
-                          " What service do you"
-                          " need today",
-                          style: TextStyle(
-                            fontSize: 20,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          DummyGreyContainer(
+                              heightD: widgetHeight(30),
+                              widthD: widgetWidth(210),
+                              colorVisible: false,
+                              child: Center(
+                                child: Row(
+                                  children: [
+                                    const PoppinsTextStyle(
+                                        text: "Hello",
+                                        textSize: 18,
+                                        color: Colors.black,
+                                        isBold: false),
+                                        SizedBox(
+                                          width: widgetWidth(20),
+                                        ),
+                                        const PoppinsTextStyle(
+                                        text: "Usama !",
+                                        textSize: 20,
+                                        color: Colors.black,
+                                        isBold: true),
+                                  ],
+                                ),
+                              )),
+                          SizedBox(
+                            height: widgetHeight(9),
                           ),
-                        ),
+                          DummyGreyContainer(
+                              heightD: widgetHeight(49),
+                              widthD: widgetWidth(210),
+                              colorVisible: false,
+                              child: const PoppinsTextStyle(
+                                  text: "What Services are looking for today?",
+                                  textSize: 18,
+                                  color: Colors.black,
+                                  isBold: false)),
+                        ],
                       ),
                       SizedBox(
                         width: widgetWidth(30),

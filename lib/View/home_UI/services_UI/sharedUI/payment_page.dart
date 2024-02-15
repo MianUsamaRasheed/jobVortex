@@ -24,6 +24,8 @@ class PaymentPage extends StatelessWidget {
             "User Details & Payment Method",
             style: TextStyle(
               color: electricianServiceAppBarTextColor,
+              fontFamily: 'Poppins',
+              fontSize: 19
             ),
           ),
         ),
@@ -42,7 +44,8 @@ class PaymentPage extends StatelessWidget {
                       "User Details",
                       style: TextStyle(
                         fontSize: 16,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Poppins'
                       ),
                     ),
                     SizedBox(
@@ -61,6 +64,7 @@ class PaymentPage extends StatelessWidget {
                           labelText: "Current Address",
                           hintStyle: TextStyle(
                             color: textFieldBorderColor,
+                            fontFamily: 'Poppins'
                           ),
                           prefixIcon: Icon(
                               Icons.pin_drop
@@ -84,6 +88,7 @@ class PaymentPage extends StatelessWidget {
                           labelText: "Phone Number",
                           hintStyle: TextStyle(
                             color: textFieldBorderColor,
+                            fontFamily: 'Poppins'
                           ),
                           prefixIcon: Icon(
                               Icons.phone
@@ -104,7 +109,8 @@ class PaymentPage extends StatelessWidget {
                       "Payment Method",
                       style: TextStyle(
                         fontSize: 16,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Poppins'
                       ),
                     ),
                     SizedBox(
@@ -120,13 +126,15 @@ class PaymentPage extends StatelessWidget {
                         Text(
                           "Total",
                           style: TextStyle(
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.bold,
                             fontSize: 16,
+                            fontFamily: 'Poppins'
                           ),
                         ),
                         Text("400 PKR",
                         style: TextStyle(
                           fontSize: 15,
+                          fontFamily: 'Poppins'
                         ),
                         ),
 
@@ -147,14 +155,15 @@ class PaymentPage extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: (){
-                        Navigator.push(context,MaterialPageRoute(builder: (context) => HomePage(),));
+                        Navigator.push(context,MaterialPageRoute(builder: (context) => const HomePage(),));
                       },
                       child: const Text(
                         "Cancel",
                         style: TextStyle(
-                          fontWeight: FontWeight.w600,
+                          fontWeight: FontWeight.bold,
                           fontSize: 16,
                           color: Colors.white,
+                          fontFamily: 'Poppins'
                         ),
                       ),
                     ),
@@ -197,8 +206,9 @@ class PaymentPage extends StatelessWidget {
                                       child: Text(
                                         "Thank You 💐",
                                         style: TextStyle(
-                                          fontSize: 16,
+                                          fontSize: 20,
                                           fontWeight: FontWeight.bold,
+                                          fontFamily: 'Protest'
                                         ),
                                       ),
                                     ),
@@ -206,13 +216,14 @@ class PaymentPage extends StatelessWidget {
                                       padding: EdgeInsets.only(left: 10.0,right: 7.0),
                                       child: Text(
                                         "Your Order is Successfully done and your service provider is on her way!",
+                                        style: TextStyle(fontFamily: 'Poppins'),
                                       ),
                                     ),
                                     ElevatedButton(
                                       onPressed: () {
-                                        Navigator.push(context, MaterialPageRoute(builder: (context)=>NavigationController(),),); // Close the AlertDialog
+                                        Navigator.push(context, MaterialPageRoute(builder: (context)=> const NavigationController(),),); // Close the AlertDialog
                                       },
-                                      child: Text("OK"),
+                                      child: const Text("OK", style: TextStyle(fontFamily: 'Poppins'),),
                                     ),
                                   ],
                                 ),
@@ -227,6 +238,7 @@ class PaymentPage extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 15,
                               color: Colors.white,
+                              fontFamily: 'Poppins'
                             ),
                           ),
                           SizedBox(
@@ -283,7 +295,7 @@ class _RadioButtonTileGroupState extends State<RadioButtonTileGroup> {
             leading: const Image(
               image: AssetImage("icons/cash.png"),
             ),
-            title: Text("                 Cash"),
+            title: const Text("                 Cash", style: TextStyle(fontFamily: 'Poppins'),),
             trailing: Radio(
               activeColor:Colors.blue.shade900 ,
               value: 1,
@@ -321,7 +333,7 @@ class _RadioButtonTileGroupState extends State<RadioButtonTileGroup> {
                 image: AssetImage("icons/jazzcash.png"),
               ),
             ),
-            title: const Text("         Jazz cash"),
+            title: const Text("         Jazz cash", style: TextStyle(fontFamily: 'Poppins'),),
             trailing: Radio(
               activeColor:Colors.blue.shade900 ,
               value: 2,

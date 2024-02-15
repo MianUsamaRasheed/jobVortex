@@ -36,7 +36,9 @@ class SignIn extends StatelessWidget {
                 style: TextStyle(
                   color: textColorSignInScreen,
                   fontSize: 17,
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Poppins',
+                  
                 ),
               ),
               SizedBox(
@@ -69,6 +71,7 @@ class SignIn extends StatelessWidget {
                       "Forget Password?",
                       style: TextStyle(
                         color: forgetPasswordTextColor,
+                        fontFamily: 'Poppins'
                       ),
                     ),
                   ],
@@ -113,7 +116,12 @@ class SignIn extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("Don't have account? "),
+                  const PoppinsTextStyle(
+                    text: "Don't have account? ",
+                    color: Colors.black,
+                    textSize: 13,
+                    isBold: false,
+                  ),
                   GestureDetector(
                     onTap: () {
                       Navigator.push(
@@ -121,12 +129,12 @@ class SignIn extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => const SignUp()),
                       );
                     },
-                    child: const Text(
-                      "'Register here'",
-                      style: TextStyle(
-                        color: Colors.blue,
-                      ),
-                    ),
+                    child: const PoppinsTextStyle(
+                    text: "Register here ",
+                    color: Colors.blue,
+                    textSize: 13,
+                    isBold: false,
+                  ),
                   ),
                 ],
               ),

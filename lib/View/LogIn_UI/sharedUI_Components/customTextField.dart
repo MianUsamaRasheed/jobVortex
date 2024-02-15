@@ -16,7 +16,7 @@ class CustomTextField extends StatelessWidget {
             Radius.circular(8.0),
           ),
         ),
-        hintText: text,
+        label: Text(text, style: const TextStyle(fontFamily: "Poppins"),),
         hintStyle: const TextStyle(
           color: textFieldBorderColor,
         ),

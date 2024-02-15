@@ -27,8 +27,10 @@ class ServicesCard extends StatelessWidget {
             Text(
               titles[num],
               style: const TextStyle(
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.bold,
                 fontSize: 15,
+                fontFamily: 'Poppins'
+
               ),
             ),
           ],

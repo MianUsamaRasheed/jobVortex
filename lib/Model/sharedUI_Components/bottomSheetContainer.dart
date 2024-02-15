@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jobvortex/Model/custom_widgets/customs.dart';
 import 'package:jobvortex/Model/utils/colors.dart';
 import 'package:jobvortex/Model/utils/dimension.dart';
 
@@ -8,7 +9,7 @@ class BottomSheetContainer extends StatelessWidget {
     required this.textData,
     required this.onPressed,
   });
-  final String textData;
+  final Widget textData;
   final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
@@ -37,14 +38,7 @@ class BottomSheetContainer extends StatelessWidget {
                 bottom: widgetHeight(50),
                 left: widgetWidth(50),
                 right: widgetWidth(50)),
-            child: Text(
-              textData,
-              style: const TextStyle(
-                fontSize: 20,
-                color: Colors.white,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
+            child: textData
           ),
           Padding(
             padding: EdgeInsets.only(
@@ -65,16 +59,15 @@ class BottomSheetContainer extends StatelessWidget {
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      "Next",
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
+                    PoppinsTextStyle(
+                      text: "Next",
+                      textSize: 25,
+                      color: Colors.black,
+                      isBold: true),
                     Icon(
-                      Icons.arrow_forward,
-                      size: 30,
+                      Icons.arrow_forward_ios_sharp,
+                      size: 25,
+                      color: Colors.black,
                     ),
                   ],
                 ),
