@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1070728883015",
+    "project_id": "jobvortex-3cbfa",
+    "storage_bucket": "jobvortex-3cbfa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1070728883015:android:988dc0c0a313db26953a62",
+        "android_client_info": {
+          "package_name": "com.example.jobvortex"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANleGqIJ4BElZMVgCmAY8KKV0dA_Ps5hw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
