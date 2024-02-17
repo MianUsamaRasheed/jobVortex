@@ -26,6 +26,7 @@ class BillPage extends StatelessWidget {
           "Order Review",
           style: TextStyle(
             color: electricianServiceAppBarTextColor,
+            fontFamily: 'Poppins'
           ),
         ),
       ),
@@ -122,7 +123,8 @@ class BillPage extends StatelessWidget {
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 18,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Poppins'
                     ),
                   ),
                   SizedBox(
@@ -158,13 +160,15 @@ class CustomOrderListTile extends StatelessWidget {
         leadingText,
         style: const TextStyle(
           fontSize: 16,
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.bold,
+          fontFamily: 'Poppins'
         ),
       ),
       trailing: Text(
         trailingText,
         style: const TextStyle(
           fontSize: 15,
+          fontFamily: 'Poppins'
         ),
       ),
     );

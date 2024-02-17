@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jobvortex/Model/custom_widgets/customs.dart';
 import 'package:jobvortex/Model/utils/colors.dart';
 import 'package:jobvortex/Model/utils/dimension.dart';
 import 'package:jobvortex/Model/sharedUI_Components/bottomSheetContainer.dart';
@@ -26,8 +27,12 @@ class CleaningIntro extends StatelessWidget {
             ),
             Expanded(
               child: BottomSheetContainer(
-                textData:
-                    "Welcome to our platform, where cleanliness meets convenience! Discover a range of top-notch cleaning services tailored to your needs. ",
+                textData: const PoppinsTextStyle(
+                    text:
+                        "Welcome to our platform, where cleanliness meets convenience! Discover a range of top-notch cleaning services tailored to your needs. ",
+                    textSize: 22,
+                    color: Colors.white,
+                    isBold: false,),
                 onPressed: () {
                   Navigator.push(
                     context,

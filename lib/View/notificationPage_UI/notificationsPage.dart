@@ -22,6 +22,7 @@ class Notifications extends StatelessWidget {
               "Notifications",
               style: TextStyle(
                 color: electricianServiceAppBarTextColor,
+                fontFamily: 'Poppins'
               ),
             ),
           ),
@@ -42,13 +43,15 @@ class Notifications extends StatelessWidget {
                     Text(
                       "JobVortex",
                       style: TextStyle(
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Poppins'
                       ),
                     ),
                     Text(
                       "2h Ago",
                       style: TextStyle(
                         fontSize: 12,
+                        fontFamily: 'Poppins'
                       ),
                     ),
                   ],
@@ -57,6 +60,9 @@ class Notifications extends StatelessWidget {
                   "🎉 Welcome to JobVortex! 🎉,We are thrilled to welcome you to JobVortex, your ultimate destination for connecting with the best job opportunities in your field. ",
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontFamily: 'Poppins'
+                  ),
                 ),
               );
             },

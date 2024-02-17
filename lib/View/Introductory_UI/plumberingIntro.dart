@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jobvortex/Model/custom_widgets/customs.dart';
 import 'package:jobvortex/Model/utils/colors.dart';
 import 'package:jobvortex/Model/sharedUI_Components/bottomSheetContainer.dart';
 import 'package:jobvortex/Model/utils/dimension.dart';
@@ -26,8 +27,12 @@ class PlumberIntro extends StatelessWidget {
             ),
             Expanded(
               child: BottomSheetContainer(
-                textData:
-                    "Find custom plumbing solutions for leaks, clogs, and more from our skilled professional network.",
+                textData: const PoppinsTextStyle(
+                    text:
+                        "Find custom plumbing solutions for leaks, clogs, and more from our skilled professional network.",
+                    textSize: 22,
+                    color: Colors.white,
+                    isBold: false,),
                 onPressed: () {
                   Navigator.push(
                     context,

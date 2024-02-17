@@ -28,6 +28,7 @@ class LoginScreenButton extends StatelessWidget {
                 buttonText,
                 style: TextStyle(
                   color: logInScreenButtonTextColor,
+                  fontFamily: 'Poppins',
                   fontSize: 18,
                 ),
               ),
