@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jobvortex/Model/utils/colors.dart';
+import 'package:jobvortex/Model/custom_widgets/b_button.dart';
+import 'package:jobvortex/Model/custom_widgets/customs.dart';
+import 'package:jobvortex/Model/utils/dimension.dart';
 
 class LoginScreenButton extends StatelessWidget {
   const LoginScreenButton({
@@ -15,25 +17,17 @@ class LoginScreenButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 100),
-      child: GestureDetector(
+      child: BounceButton(
+        wHeight: widgetHeight(60),
+        wWidth: widgetWidth(130),
+        containerColor: Colors.black,
         onTap: buttonClicked,
-        child: Container(
-            height: 63,
-            decoration: BoxDecoration(
-              color: logInScreenButtonColor,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Center(
-              child: Text(
-                buttonText,
-                style: TextStyle(
-                  color: logInScreenButtonTextColor,
-                  fontFamily: 'Poppins',
-                  fontSize: 18,
-                ),
-              ),
-            )),
-      ),
+        cChild: PoppinsTextStyle(
+          text: buttonText,
+          textSize: 16,
+          color: Colors.white,
+          isBold: false),
+      )
     );
   }
 }

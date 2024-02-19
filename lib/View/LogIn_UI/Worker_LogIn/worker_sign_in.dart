@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:jobvortex/Controller/worker_navigation_controller.dart';
 import 'package:jobvortex/Model/custom_widgets/customs.dart';
 import 'package:jobvortex/Model/custom_widgets/fade_in.dart';
 import 'package:jobvortex/Model/utils/colors.dart';
 import 'package:jobvortex/Model/utils/dimension.dart';
+import 'package:jobvortex/View/LogIn_UI/sharedUI_Components/customTextField.dart';
 import 'package:jobvortex/View/LogIn_UI/sharedUI_Components/login_screen_button.dart';
 import 'package:jobvortex/View/LogIn_UI/sharedUI_Components/textBtwDividers.dart';
-import 'package:jobvortex/View/LogIn_UI/sharedUI_Components/customTextField.dart';
 import 'package:jobvortex/View/LogIn_UI/signUp.dart';
-import 'package:jobvortex/Controller/navigationController.dart';
 
-class SignIn extends StatelessWidget {
-  const SignIn({super.key});
+class WorkerSignIn extends StatelessWidget {
+  const WorkerSignIn({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class SignIn extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(
-                height: widgetHeight(20),
+                height: widgetHeight(30),
               ),
               const FadeInAnimation(
                 delay: 1.2,
@@ -38,7 +38,7 @@ class SignIn extends StatelessWidget {
               FadeInAnimation(
                 delay: 1.4,
                 child: Text(
-                  "Welcome back you've been missed!",
+                  "Worker Panel!",
                   style: TextStyle(
                     color: textColorSignInScreen,
                     fontSize: 17,
@@ -104,7 +104,7 @@ class SignIn extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const NavigationController(),
+                        builder: (context) => const WorkerNavigationController(),
                       ),
                     );
                   },

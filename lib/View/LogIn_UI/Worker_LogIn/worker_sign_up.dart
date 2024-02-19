@@ -7,8 +7,8 @@ import 'package:jobvortex/View/LogIn_UI/sharedUI_Components/login_screen_button.
 import 'package:jobvortex/View/LogIn_UI/sharedUI_Components/textBtwDividers.dart';
 import 'package:jobvortex/View/LogIn_UI/signIn.dart';
 
-class SignUp extends StatelessWidget {
-  const SignUp({super.key});
+class WorkerSignUp extends StatelessWidget {
+  const WorkerSignUp({super.key});
 
   @override
   Widget build(BuildContext context) {

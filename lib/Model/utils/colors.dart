@@ -35,6 +35,13 @@ Color blueAppThemeColor = Colors.blue.shade900;
 Color backgroundColorBehindNavigationBar = Colors.transparent;
 Color buttonBackGroundColor = Colors.blue.shade900;
 
+//Transaction Colors
+Color incomingFunds = const Color(0xffe5f9f7);
+Color outcomingFunds = const Color(0xffffeeef);
+Color incomingFundsIconColor = const Color(0xff24c1a9);
+Color outcomingFundsIconColor = const Color(0xffe59286);
+
+
 // Custom Card
 
 const Color containerColor = Colors.white;

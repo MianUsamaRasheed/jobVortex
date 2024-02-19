@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jobvortex/Model/custom_widgets/b_button.dart';
 import 'package:jobvortex/Model/custom_widgets/customs.dart';
 import 'package:jobvortex/Model/utils/colors.dart';
 import 'package:jobvortex/Model/utils/dimension.dart';
@@ -30,7 +31,6 @@ class BottomSheetContainer extends StatelessWidget {
         top: widgetHeight(40),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Padding(
             padding: EdgeInsets.only(
@@ -40,40 +40,25 @@ class BottomSheetContainer extends StatelessWidget {
                 right: widgetWidth(50)),
             child: textData
           ),
-          Padding(
-            padding: EdgeInsets.only(
-                left: widgetWidth(110), right: widgetWidth(110)),
-            child: GestureDetector(
-              onTap: onPressed,
-              child: Container(
-                padding: EdgeInsets.only(
-                    left: widgetWidth(30), right: widgetWidth(30)),
-                width: widgetWidth(90),
-                height: widgetHeight(60),
-                decoration: const BoxDecoration(
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(20),
+          BounceButton(
+            onTap: onPressed,
+            cChild: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const PoppinsTextStyle(
+                  text: "Next",
+                  textSize: 22,
+                  color: Colors.black,
+                  isBold: true),
+                  SizedBox(
+                    width: widgetWidth(10),
                   ),
-                ),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    PoppinsTextStyle(
-                      text: "Next",
-                      textSize: 25,
-                      color: Colors.black,
-                      isBold: true),
-                    Icon(
-                      Icons.arrow_forward_ios_sharp,
-                      size: 25,
-                      color: Colors.black,
-                    ),
-                  ],
-                ),
-              ),
+                  const Icon(Icons.arrow_forward_ios_rounded)
+              ],
             ),
-          ),
+            wHeight: widgetHeight(70),
+            wWidth: widgetWidth(130),
+            containerColor: Colors.blue)
         ],
       ),
     );
