@@ -1,29 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:jobvortex/View/bookmarkPage_UI/bookmarksPage.dart';
-import 'package:jobvortex/View/notificationPage_UI/notificationsPage.dart';
-import 'package:jobvortex/View/profilePage_UI/profilePage.dart';
-import 'package:jobvortex/View/home_UI/homePage.dart';
+import 'package:jobvortex/View/Worker_UI/worker_home_screen/worker_homepage.dart';
+import 'package:jobvortex/View/Worker_UI/worker_notification_screen/worker_notification_page.dart';
+import 'package:jobvortex/View/Worker_UI/worker_profile_screen/worker_profile_page.dart';
 import 'package:jobvortex/Model/utils/colors.dart';
+import 'package:jobvortex/View/Worker_UI/worker_transaction_screen/worker_transactions_screen.dart';
 
-class NavigationController extends StatefulWidget {
-  const NavigationController({super.key});
+class WorkerNavigationController extends StatefulWidget {
+  const WorkerNavigationController({super.key});
 
   @override
-  State<NavigationController> createState() => _NavigationControllerState();
+  State<WorkerNavigationController> createState() =>
+      _WorkerNavigationControllerState();
 }
 
-class _NavigationControllerState extends State<NavigationController> {
+class _WorkerNavigationControllerState
+    extends State<WorkerNavigationController> {
   int activePage = 0;
-  bool hasUnreadNotifications = true;
+  bool hasUnreadNotifications = true; // Example flag for unread notifications
 
   @override
   Widget build(BuildContext context) {
     final screens = [
-      const HomePage(),
-      const BookMarks(),
-      const Notifications(),
-      const Profile(),
+      const WorkerHomePage(),
+      const Transactions(),
+      const WorkerNotificationScreen(),
+      const WorkerProfilePage(),
     ];
     return SafeArea(
       child: Scaffold(
@@ -36,14 +38,14 @@ class _NavigationControllerState extends State<NavigationController> {
           buttonBackgroundColor: buttonBackGroundColor,
           items: [
             const Icon(Icons.home, size: 30, color: iconColor),
-            const Icon(Icons.bookmark, size: 30, color: iconColor),
+            const Icon(Icons.book_outlined, size: 30, color: iconColor),
             _buildNotificationIcon(),
             const Icon(Icons.person, size: 30, color: iconColor),
           ],
           onTap: (index) {
             setState(() {
               activePage = index;
-              if (index == 2) {
+              if (index == 2) { // Assuming tapping notifications clears them
                 hasUnreadNotifications = false;
               }
             });
@@ -72,7 +74,7 @@ class _NavigationControllerState extends State<NavigationController> {
                 minHeight: 14,
               ),
               child: const Text(
-                '', // You can also display the number of notifications here
+                '', // Optional: Number of notifications
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 8,

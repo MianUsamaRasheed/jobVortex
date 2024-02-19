@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:jobvortex/Model/custom_widgets/customs.dart';
+import 'package:jobvortex/Model/custom_widgets/fade_in.dart';
 import 'package:jobvortex/Model/utils/colors.dart';
 import 'package:jobvortex/Model/utils/dimension.dart';
 import 'package:jobvortex/View/LogIn_UI/sharedUI_Components/login_screen_button.dart';
@@ -23,7 +24,6 @@ class _SignInState extends State<SignIn> {
   bool isLogin = false;
   String userEmail = "";
 
-
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -38,17 +38,18 @@ class _SignInState extends State<SignIn> {
     );
     try {
       // Login the user
-      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
       );
 
       Navigator.of(context, rootNavigator: true).pop();
 
-      if(userCredential.user != null){
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>NavigationController()));
+      if (userCredential.user != null) {
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => NavigationController()));
       }
-
     } on FirebaseAuthException catch (e) {
       // Dismiss the loading circle
       Navigator.of(context, rootNavigator: true).pop();
@@ -63,13 +64,12 @@ class _SignInState extends State<SignIn> {
           break;
 
         default:
-        // Handle unexpected error codes
+          // Handle unexpected error codes
           errorMessage = 'An unexpected error occurred. Please try again.';
           break;
       }
       print("FirebaseAuthException caught: ${e.code}");
       showSnackbar(errorMessage);
-
     }
   }
 
@@ -81,6 +81,7 @@ class _SignInState extends State<SignIn> {
 
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
+
   Widget _errorMessage() {
     return Text(errorMessage == '' ? '' : 'Humm ? $errorMessage');
   }
@@ -148,6 +149,7 @@ class _SignInState extends State<SignIn> {
           builder: (context) => const NavigationController()));
     });
   }
+
   Future<UserCredential?> signInWithFacebook() async {
     // Trigger the sign-in flow
     final LoginResult? loginResult = await FacebookAuth.instance.login();
@@ -157,10 +159,12 @@ class _SignInState extends State<SignIn> {
       final AccessToken? accessToken = loginResult.accessToken;
       if (accessToken != null) {
         // Create a credential from the access token
-        final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(accessToken.token);
+        final OAuthCredential facebookAuthCredential =
+            FacebookAuthProvider.credential(accessToken.token);
 
         // Once signed in, return the UserCredential
-        return await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+        return await FirebaseAuth.instance
+            .signInWithCredential(facebookAuthCredential);
       } else {
         // Handle the case where accessToken is null
         print('Access token is null');
@@ -172,7 +176,6 @@ class _SignInState extends State<SignIn> {
       return null;
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -187,21 +190,26 @@ class _SignInState extends State<SignIn> {
               SizedBox(
                 height: widgetHeight(20),
               ),
-              const Icon(
-                Icons.lock_outline,
-                size: 100,
+              const FadeInAnimation(
+                delay: 1.2,
+                child: Icon(
+                  Icons.lock_outline,
+                  size: 100,
+                ),
               ),
               SizedBox(
                 height: widgetHeight(30),
               ),
-              Text(
-                "Welcome back you've been missed!",
-                style: TextStyle(
-                  color: textColorSignInScreen,
-                  fontSize: 17,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Poppins',
-
+              FadeInAnimation(
+                delay: 1.4,
+                child: Text(
+                  "Welcome back you've been missed!",
+                  style: TextStyle(
+                    color: textColorSignInScreen,
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Poppins',
+                  ),
                 ),
               ),
               SizedBox(
@@ -209,10 +217,13 @@ class _SignInState extends State<SignIn> {
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: widgetWidth(30)),
-                child: CustomTextField(
-                  text: "User Email",
-                  textFieldIcon: const Icon(Icons.email),
-                  controller: emailController,
+                child: FadeInAnimation(
+                  delay: 1.6,
+                  child: CustomTextField(
+                    text: "User Email",
+                    textFieldIcon: const Icon(Icons.email),
+                    controller: emailController,
+                  ),
                 ),
               ),
               SizedBox(
@@ -220,10 +231,13 @@ class _SignInState extends State<SignIn> {
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: widgetWidth(30)),
-                child: CustomTextField(
-                  text: "Password",
-                  textFieldIcon: const Icon(Icons.lock),
-                  controller: passwordController,
+                child: FadeInAnimation(
+                  delay: 1.8,
+                  child: CustomTextField(
+                    text: "Password",
+                    textFieldIcon: const Icon(Icons.lock),
+                    controller: passwordController,
+                  ),
                 ),
               ),
               Padding(
@@ -232,11 +246,13 @@ class _SignInState extends State<SignIn> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text(
-                      "Forget Password?",
-                      style: TextStyle(
-                        color: forgetPasswordTextColor,
-                        fontFamily: 'Poppins'
+                    FadeInAnimation(
+                      delay: 2.0,
+                      child: Text(
+                        "Forget Password?",
+                        style: TextStyle(
+                            color: forgetPasswordTextColor,
+                            fontFamily: 'Poppins'),
                       ),
                     ),
                   ],
@@ -245,62 +261,71 @@ class _SignInState extends State<SignIn> {
               SizedBox(
                 height: widgetHeight(25),
               ),
-              LoginScreenButton(
-                buttonText: "Sign In",
-                buttonClicked: () {
-                  loginTheUser();
-                },
+              FadeInAnimation(
+                delay: 2.2,
+                child: LoginScreenButton(
+                  buttonText: "Sign In",
+                  buttonClicked: () {
+                    loginTheUser();
+                  },
+                ),
               ),
               SizedBox(
                 height: widgetHeight(30),
               ),
-              const TextBtwDividers(
-                inputText: "OR",
+              const FadeInAnimation(
+                delay: 2.4,
+                child: TextBtwDividers(
+                  inputText: "OR",
+                ),
               ),
               SizedBox(
                 height: widgetHeight(20),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  AuthTile(ImagePath: 'icons/google.png', onTap: () {
-                    googleButtonClick();
-                  }),
-                  SizedBox(
-                    width: widgetWidth(20),
-                  ),
-                  AuthTile(ImagePath: 'icons/facebook.png', onTap: () {
-                    signInWithFacebook();
-                  })
-                ],
+              FadeInAnimation(
+                delay: 2.6,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    AuthTile(ImagePath: 'icons/google.png', onTap: () {}),
+                    SizedBox(
+                      width: widgetWidth(20),
+                    ),
+                    AuthTile(ImagePath: 'icons/facebook.png', onTap: () {})
+                  ],
+                ),
               ),
               SizedBox(
                 height: widgetHeight(25),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const PoppinsTextStyle(
-                    text: "Don't have account? ",
-                    color: Colors.black,
-                    textSize: 13,
-                    isBold: false,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const SignUp()),
-                      );
-                    },
-                    child: const PoppinsTextStyle(
-                    text: "Register here ",
-                    color: Colors.blue,
-                    textSize: 13,
-                    isBold: false,
-                  ),
-                  ),
-                ],
+              FadeInAnimation(
+                delay: 2.8,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const PoppinsTextStyle(
+                      text: "Don't have account? ",
+                      color: Colors.black,
+                      textSize: 13,
+                      isBold: false,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SignUp()),
+                        );
+                      },
+                      child: const PoppinsTextStyle(
+                        text: "Register here ",
+                        color: Colors.blue,
+                        textSize: 13,
+                        isBold: false,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

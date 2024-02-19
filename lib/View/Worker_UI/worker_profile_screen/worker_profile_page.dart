@@ -4,8 +4,8 @@ import 'package:jobvortex/Model/custom_widgets/customs.dart';
 import 'package:jobvortex/Model/utils/colors.dart';
 import 'package:jobvortex/Model/utils/dimension.dart';
 
-class Profile extends StatelessWidget {
-  const Profile({super.key});
+class WorkerProfilePage extends StatelessWidget {
+  const WorkerProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +57,7 @@ class Profile extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(100),
                       child: Image.asset(
-                        'images/myimage.jpg',
+                        'images/clientPic.jpg',
                         height: widgetHeight(110),
                         width: widgetWidth(100),
                         fit: BoxFit.cover,
@@ -73,7 +73,7 @@ class Profile extends StatelessWidget {
                     height: widgetHeight(25),
                     width: double.infinity,
                     child: const Text(
-                      "Abdullah Rashid",
+                      "Muhammad Usama",
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 20,
@@ -87,7 +87,7 @@ class Profile extends StatelessWidget {
                     height: widgetHeight(20),
                     width: double.infinity,
                     child: const CustomGreyText(
-                      text: "@abdullahr01",
+                      text: "@mianUSama",
                     )),
               ),
               SizedBox(
@@ -105,7 +105,7 @@ class Profile extends StatelessWidget {
                       Row(
                         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const CustomGreyText(text: "Abdullah Rashid"),
+                          const CustomGreyText(text: "Muhammad Usama"),
                           SizedBox(
                             width: widgetWidth(140),
                           ),
@@ -129,11 +129,11 @@ class Profile extends StatelessWidget {
                       SizedBox(
                         height: widgetHeight(10),
                       ),
-                      const CustomGreyText(text: "abdullahRashid01@gmail.com"),
+                      const CustomGreyText(text: "MianUsama@gmail.com"),
                       SizedBox(
                         height: widgetHeight(10),
                       ),
-                      const CustomGreyText(text: "+81-03093023"),
+                      const CustomGreyText(text: "+49-08309023"),
                     ],
                   ),
                 ),

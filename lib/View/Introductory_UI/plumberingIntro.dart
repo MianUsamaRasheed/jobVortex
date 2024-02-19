@@ -3,8 +3,8 @@ import 'package:jobvortex/Model/custom_widgets/customs.dart';
 import 'package:jobvortex/Model/utils/colors.dart';
 import 'package:jobvortex/Model/sharedUI_Components/bottomSheetContainer.dart';
 import 'package:jobvortex/Model/utils/dimension.dart';
+import 'package:jobvortex/View/Hierarchy/hierarchy.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:jobvortex/View/LogIn_UI/signIn.dart';
 
 class PlumberIntro extends StatelessWidget {
   const PlumberIntro({super.key});
@@ -38,7 +38,7 @@ class PlumberIntro extends StatelessWidget {
                     context,
                     PageTransition(
                       type: PageTransitionType.rightToLeft,
-                      child: const SignIn(),
+                      child: const HierarchyScreen(),
                     ),
                   );
                 },

@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:jobvortex/Model/custom_widgets/fade_in.dart';
 import 'package:jobvortex/Model/utils/colors.dart';
@@ -9,101 +7,18 @@ import 'package:jobvortex/View/LogIn_UI/sharedUI_Components/login_screen_button.
 import 'package:jobvortex/View/LogIn_UI/sharedUI_Components/textBtwDividers.dart';
 import 'package:jobvortex/View/LogIn_UI/signIn.dart';
 
-class SignUp extends StatefulWidget {
-  const SignUp({super.key});
+class WorkerSignUp extends StatefulWidget {
+  const WorkerSignUp({super.key});
 
   @override
-  State<SignUp> createState() => _SignUpState();
+  State<WorkerSignUp> createState() => _WorkerSignUpState();
 }
 
-class _SignUpState extends State<SignUp> {
-
+class _WorkerSignUpState extends State<WorkerSignUp> {
   final nameController = TextEditingController();
   final mobileNumberController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-
-  late String errorMessage;
-
-  void createTheUser() async {
-    // Show loading circle
-    showDialog(
-      barrierDismissible: false,
-      context: context,
-      builder: (context) {
-        return const Center(child: CircularProgressIndicator());
-      },
-    );
-
-    try {
-      // Login the user
-      UserCredential userCredential =
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
-      );
-
-      User? user = userCredential.user;
-      if (user != null) {
-        await FirebaseFirestore.instance.collection("Users").doc(user.uid).set({
-          "Name": nameController.text,
-          "PhoneNumber": mobileNumberController.text,
-          "Email": emailController.text,
-          "Password": passwordController.text,
-        });
-      } else {
-        errorMessage = "User creation failed";
-        showSnackbar(errorMessage);
-      }
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-            builder: (context) =>
-                SignIn()),
-      );
-    } on FirebaseAuthException catch (e) {
-      // Dismiss the loading circle
-      Navigator.of(context, rootNavigator: true).pop();
-
-      // Handling different FirebaseAuthException error codes
-      switch (e.code) {
-        case 'user-not-found':
-          errorMessage = 'No user found for that email.';
-          break;
-        case 'email-already-in-use':
-          errorMessage = 'Email already in-use';
-          break;
-        default:
-        // Handle unexpected error codes
-          errorMessage = 'An unexpected error occurred. Please try again.';
-          break;
-      }
-      print("FirebaseAuthException caught: ${e.code}");
-      showSnackbar(errorMessage);
-    } finally {
-      if (mounted) {
-        // Check if the loading circle is still present, then dismiss it
-        if (Navigator.canPop(context)) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                builder: (context) =>
-                    SignIn()),
-          );
-        }
-      }
-    }
-
-  }
-  void showSnackbar(String errorMessage) {
-    final snackBar = SnackBar(
-      content: Text(errorMessage),
-      duration: const Duration(seconds: 3),
-    );
-
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  }
-
   @override
   Widget build(BuildContext context) {
     initMediaQuerySize(context);
@@ -143,7 +58,6 @@ class _SignUpState extends State<SignUp> {
                 SizedBox(
                   height: widgetHeight(50),
                 ),
-
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: FadeInAnimation(
@@ -153,7 +67,6 @@ class _SignUpState extends State<SignUp> {
                       textFieldIcon: const Icon(Icons.person),
                       controller: nameController,
                     ),
-
                   ),
                 ),
                 SizedBox(
@@ -201,16 +114,17 @@ class _SignUpState extends State<SignUp> {
                 SizedBox(
                   height: widgetHeight(40),
                 ),
-
                 FadeInAnimation(
                   delay: 2.4,
                   child: LoginScreenButton(
                     buttonText: "Sign Up",
-            buttonClicked: () {
-      createTheUser();
-      },
+                    buttonClicked: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const SignIn()),
+                      );
+                    },
                   ),
-
                 ),
                 SizedBox(
                   height: widgetHeight(30),
