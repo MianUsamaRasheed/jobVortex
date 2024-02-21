@@ -152,7 +152,9 @@ class _SignInState extends State<SignIn> {
 
   Future<UserCredential?> signInWithFacebook() async {
     // Trigger the sign-in flow
-    final LoginResult? loginResult = await FacebookAuth.instance.login();
+    final LoginResult? loginResult = await FacebookAuth.instance.login(permissions: ["public_profile", "email"]).then((value) async {
+      await FacebookAuth.instance.getUserData();
+    });
 
     if (loginResult != null) {
       // Check if loginResult.accessToken is not null before accessing its properties
@@ -287,11 +289,15 @@ class _SignInState extends State<SignIn> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    AuthTile(ImagePath: 'icons/google.png', onTap: () {}),
+                    AuthTile(ImagePath: 'icons/google.png', onTap: () {
+                      signInWithGoogle();
+                    }),
                     SizedBox(
                       width: widgetWidth(20),
                     ),
-                    AuthTile(ImagePath: 'icons/facebook.png', onTap: () {})
+                    AuthTile(ImagePath: 'icons/facebook.png', onTap: () {
+                      signInWithFacebook();
+                    })
                   ],
                 ),
               ),
