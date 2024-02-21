@@ -30,7 +30,7 @@ class WorkerProfilePage extends StatelessWidget {
                       IconButton(
                           onPressed: () {},
                           icon: const Icon(
-                            Icons.arrow_back_ios,
+                            Icons.arrow_back,
                             color: Colors.white,
                             size: 25,
                           )),

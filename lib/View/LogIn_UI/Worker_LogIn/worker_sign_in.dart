@@ -9,8 +9,18 @@ import 'package:jobvortex/View/LogIn_UI/sharedUI_Components/login_screen_button.
 import 'package:jobvortex/View/LogIn_UI/sharedUI_Components/textBtwDividers.dart';
 import 'package:jobvortex/View/LogIn_UI/signUp.dart';
 
-class WorkerSignIn extends StatelessWidget {
+class WorkerSignIn extends StatefulWidget {
+
   const WorkerSignIn({super.key});
+
+  @override
+  State<WorkerSignIn> createState() => _WorkerSignInState();
+}
+
+class _WorkerSignInState extends State<WorkerSignIn> {
+
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +54,7 @@ class WorkerSignIn extends StatelessWidget {
                     fontSize: 17,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Poppins',
-                    
+
                   ),
                 ),
               ),
@@ -53,11 +63,13 @@ class WorkerSignIn extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: widgetWidth(30)),
-                child: const FadeInAnimation(
+                child: FadeInAnimation(
                   delay: 1.6,
                   child: CustomTextField(
                     text: "User Email",
-                    textFieldIcon: Icon(Icons.email),
+                    textFieldIcon: const Icon(Icons.email),
+                    controller: emailController,
+
                   ),
                 ),
               ),
@@ -66,11 +78,12 @@ class WorkerSignIn extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: widgetWidth(30)),
-                child: const FadeInAnimation(
+                child: FadeInAnimation(
                   delay: 1.8,
                   child: CustomTextField(
                     text: "Password",
-                    textFieldIcon: Icon(Icons.lock),
+                    textFieldIcon: const Icon(Icons.lock),
+                    controller: passwordController,
                   ),
                 ),
               ),

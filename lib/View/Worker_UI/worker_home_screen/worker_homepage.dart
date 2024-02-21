@@ -4,6 +4,7 @@ import 'package:jobvortex/Model/utils/colors.dart';
 import 'package:jobvortex/Model/utils/dimension.dart';
 import 'package:jobvortex/View/Worker_UI/Customs_Widgets/about_jobs_custom.dart';
 import 'package:jobvortex/View/Worker_UI/Details_Pages/job_details_worker.dart';
+import 'package:jobvortex/View/Worker_UI/worker_home_screen/Add_Worker_job/add_job.dart';
 
 class WorkerHomePage extends StatelessWidget {
   const WorkerHomePage({super.key});
@@ -19,9 +20,64 @@ class WorkerHomePage extends StatelessWidget {
         automaticallyImplyLeading: false,
         title: const PoppinsTextStyle(
             text: "Homepage", textSize: 21, color: Colors.white, isBold: false),
+            leading: IconButton(onPressed: () {}, icon: const Icon(Icons.logout_outlined, color: Colors.white,)),
       ),
       body: Column(
         children: [
+          Container(
+            height: widgetHeight(80),
+            width: widgetWidth(double.infinity),
+            color: Colors.white,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                DummyGreyContainer(
+                    heightD: widgetHeight(30),
+                    widthD: widgetWidth(150),
+                    colorVisible: false,
+                    child: const PoppinsTextStyle(
+                        text: "Add your Job",
+                        textSize: 20,
+                        color: Colors.black,
+                        isBold: false)),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => AddTheJob()));
+                  },
+                  child: Container(
+                    height: widgetHeight(45),
+                    width: widgetWidth(90),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: blueAppThemeColor),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        PoppinsTextStyle(
+                            text: "Add",
+                            textSize: 17,
+                            color: Colors.white,
+                            isBold: false),
+                        Icon(
+                          Icons.add,
+                          color: Colors.white,
+                          size: 21,
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: widgetHeight(30),
+            child: const Divider(
+              color: lightBlueAppTheme,
+              thickness: 3,
+            ),
+          ),
           SizedBox(
             height: widgetHeight(20),
           ),
@@ -38,12 +94,13 @@ class WorkerHomePage extends StatelessWidget {
                   itemCount: 2,
                   itemBuilder: (BuildContext context, int index) {
                     return IncomingJobsAlert(
-                        jobText: job[index],
-                        jobType: typeJob[index],
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => const JobDetails()));
-                        },
-                        );
+                      jobText: job[index],
+                      jobType: typeJob[index],
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const JobDetails()));
+                      },
+                    );
                   }),
             ),
           )

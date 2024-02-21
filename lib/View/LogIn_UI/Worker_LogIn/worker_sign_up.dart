@@ -7,9 +7,18 @@ import 'package:jobvortex/View/LogIn_UI/sharedUI_Components/login_screen_button.
 import 'package:jobvortex/View/LogIn_UI/sharedUI_Components/textBtwDividers.dart';
 import 'package:jobvortex/View/LogIn_UI/signIn.dart';
 
-class WorkerSignUp extends StatelessWidget {
+class WorkerSignUp extends StatefulWidget {
   const WorkerSignUp({super.key});
 
+  @override
+  State<WorkerSignUp> createState() => _WorkerSignUpState();
+}
+
+class _WorkerSignUpState extends State<WorkerSignUp> {
+  final nameController = TextEditingController();
+  final mobileNumberController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     initMediaQuerySize(context);
@@ -49,52 +58,56 @@ class WorkerSignUp extends StatelessWidget {
                 SizedBox(
                   height: widgetHeight(50),
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 30),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: FadeInAnimation(
                     delay: 1.6,
                     child: CustomTextField(
                       text: "User Name",
-                      textFieldIcon: Icon(Icons.person),
+                      textFieldIcon: const Icon(Icons.person),
+                      controller: nameController,
                     ),
                   ),
                 ),
                 SizedBox(
                   height: widgetHeight(10),
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 30),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: FadeInAnimation(
                     delay: 1.8,
                     child: CustomTextField(
                       text: "Phone number",
-                      textFieldIcon: Icon(Icons.phone),
+                      textFieldIcon: const Icon(Icons.phone),
+                      controller: mobileNumberController,
                     ),
                   ),
                 ),
                 SizedBox(
                   height: widgetHeight(10),
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 30),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: FadeInAnimation(
                     delay: 2.0,
                     child: CustomTextField(
                       text: "Email_ID",
-                      textFieldIcon: Icon(Icons.email),
+                      textFieldIcon: const Icon(Icons.email),
+                      controller: emailController,
                     ),
                   ),
                 ),
                 SizedBox(
                   height: widgetHeight(10),
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 30),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: FadeInAnimation(
                     delay: 2.2,
                     child: CustomTextField(
                       text: "Password",
-                      textFieldIcon: Icon(Icons.lock),
+                      textFieldIcon: const Icon(Icons.lock),
+                      controller: passwordController,
                     ),
                   ),
                 ),
