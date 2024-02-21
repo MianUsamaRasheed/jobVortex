@@ -23,7 +23,7 @@ class AirConditionerIntro extends StatelessWidget {
               child: Image.asset('images/airConditionerIntro.jpg'),
             ),
             SizedBox(
-              height: widgetHeight(16),
+              height: widgetHeight(6),
             ),
             Expanded(
               child: BottomSheetContainer(

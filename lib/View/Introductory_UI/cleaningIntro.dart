@@ -23,7 +23,7 @@ class CleaningIntro extends StatelessWidget {
               child: Image.asset('images/cleaningIntro.jpg'),
             ),
             SizedBox(
-              height: widgetHeight(16),
+              height: widgetHeight(4),
             ),
             Expanded(
               child: BottomSheetContainer(
