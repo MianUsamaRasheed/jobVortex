@@ -15,10 +15,10 @@ class NavigationController extends StatefulWidget {
 
 class _NavigationControllerState extends State<NavigationController> {
   int activePage = 0;
+  bool hasUnreadNotifications = true;
 
   @override
   Widget build(BuildContext context) {
-
     final screens = [
       const HomePage(),
       const BookMarks(),
@@ -30,25 +30,58 @@ class _NavigationControllerState extends State<NavigationController> {
         extendBody: true,
         body: screens[activePage],
         bottomNavigationBar: CurvedNavigationBar(
-
           index: activePage,
-          color: backgroundColorNavigationBar, // Background color of the navigation bar
-          backgroundColor: backgroundColorBehindNavigationBar, // Background color behind the navigation bar
-          buttonBackgroundColor: buttonBackGroundColor, // Background color of the navigation bar buttons
-          items: const [
-            Icon(Icons.home, size: 30, color: iconColor), // You can adjust the icon color here
-            Icon(Icons.bookmark, size: 30, color: iconColor),
-            Icon(Icons.notifications, size: 30, color: iconColor),
-            Icon(Icons.person, size: 30, color: iconColor),
+          color: backgroundColorNavigationBar,
+          backgroundColor: backgroundColorBehindNavigationBar,
+          buttonBackgroundColor: buttonBackGroundColor,
+          items: [
+            const Icon(Icons.home, size: 30, color: iconColor),
+            const Icon(Icons.bookmark, size: 30, color: iconColor),
+            _buildNotificationIcon(),
+            const Icon(Icons.person, size: 30, color: iconColor),
           ],
-          onTap: (index){
+          onTap: (index) {
             setState(() {
               activePage = index;
+              if (index == 2) {
+                hasUnreadNotifications = false;
+              }
             });
           },
           animationDuration: const Duration(milliseconds: 300),
         ),
       ),
+    );
+  }
+
+  Widget _buildNotificationIcon() {
+    return Stack(
+      children: [
+        const Icon(Icons.notifications, size: 30, color: iconColor),
+        if (hasUnreadNotifications)
+          Positioned(
+            right: 0,
+            child: Container(
+              padding: const EdgeInsets.all(1),
+              decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.circular(6),
+              ),
+              constraints: const BoxConstraints(
+                minWidth: 14,
+                minHeight: 14,
+              ),
+              child: const Text(
+                '', // You can also display the number of notifications here
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 8,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+      ],
     );
   }
 }

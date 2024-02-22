@@ -16,18 +16,19 @@ class OffersCard extends StatelessWidget {
         color: containerColor,
         borderRadius: BorderRadius.circular(20),
       ),
-
       width: widgetWidth(220),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image.asset("images/offers${num+1}.jpg"),
+          Image.asset("images/offers${num + 1}.jpg"),
           Padding(
-            padding: const EdgeInsets.only(left: 15,right: 8),
-            child: Text(titles[num],
+            padding: const EdgeInsets.only(left: 15, right: 8),
+            child: Text(
+              titles[num],
               style: const TextStyle(
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.bold,
                 fontSize: 15,
+                fontFamily: 'Poppins'
               ),
             ),
           ),

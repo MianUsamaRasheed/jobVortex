@@ -19,23 +19,22 @@ class _SplashState extends State<Splash> {
     // Add a delay of seconds (adjust as needed)
     Future.delayed(const Duration(seconds: 3), () {
       // Navigate to the main page after the delay
-      Navigator.pushReplacement(context, PageTransition(type: PageTransitionType.fade, child: const CleaningIntro()));
+      Navigator.pushReplacement(
+          context,
+          PageTransition(
+              type: PageTransitionType.fade, child: const CleaningIntro()));
     });
-
   }
+
   @override
   Widget build(BuildContext context) {
-
     return SafeArea(
       child: Scaffold(
         backgroundColor: splash_Background_Color,
         body: Center(
-
           child: Column(
-
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-
               SizedBox(
                 child: Image.asset('images/splashPic.jpg'),
               ),
@@ -49,10 +48,8 @@ class _SplashState extends State<Splash> {
                   fontSize: 35,
                   fontWeight: FontWeight.w700,
                   fontStyle: FontStyle.italic,
-
                 ),
               ),
-
             ],
           ),
         ),

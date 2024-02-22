@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:jobvortex/Model/utils/dimension.dart';
 import 'package:jobvortex/Model/utils/colors.dart';
 
-
 class HomePageDivider extends StatelessWidget {
   const HomePageDivider({super.key});
 

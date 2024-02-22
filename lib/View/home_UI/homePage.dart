@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jobvortex/Model/custom_widgets/customs.dart';
 import 'package:jobvortex/Model/utils/colors.dart';
 import 'package:jobvortex/Model/utils/dimension.dart';
 import 'package:jobvortex/View/home_UI/services_UI/electricianService.dart';
@@ -32,7 +33,7 @@ class HomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                height: widgetHeight(100),
+                height: widgetHeight(110),
                 width: widgetWidth(365),
                 margin: EdgeInsets.only(top: widgetHeight(10)),
                 color: introContainerColor,
@@ -44,15 +45,45 @@ class HomePage extends StatelessWidget {
                       bottom: widgetHeight(10)),
                   child: Row(
                     children: [
-                      const Expanded(
-                        child: Text(
-                          "Hello, Usama!"
-                          " What service do you"
-                          " need today",
-                          style: TextStyle(
-                            fontSize: 20,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          DummyGreyContainer(
+                              heightD: widgetHeight(30),
+                              widthD: widgetWidth(210),
+                              colorVisible: false,
+                              child: Center(
+                                child: Row(
+                                  children: [
+                                    const PoppinsTextStyle(
+                                        text: "Hello",
+                                        textSize: 18,
+                                        color: Colors.black,
+                                        isBold: false),
+                                        SizedBox(
+                                          width: widgetWidth(20),
+                                        ),
+                                        const PoppinsTextStyle(
+                                        text: "Usama !",
+                                        textSize: 20,
+                                        color: Colors.black,
+                                        isBold: true),
+                                  ],
+                                ),
+                              )),
+                          SizedBox(
+                            height: widgetHeight(9),
                           ),
-                        ),
+                          DummyGreyContainer(
+                              heightD: widgetHeight(49),
+                              widthD: widgetWidth(210),
+                              colorVisible: false,
+                              child: const PoppinsTextStyle(
+                                  text: "What Services are looking for today?",
+                                  textSize: 18,
+                                  color: Colors.black,
+                                  isBold: false)),
+                        ],
                       ),
                       SizedBox(
                         width: widgetWidth(30),
@@ -68,7 +99,7 @@ class HomePage extends StatelessWidget {
               const HomePageDivider(),
               const HomePageText(text: "Services"),
               SizedBox(
-                height: widgetHeight(300),
+                height: widgetHeight(230),
                 child: ListView.separated(
                   physics: const BouncingScrollPhysics(),
                   itemCount: 4,
@@ -98,7 +129,7 @@ class HomePage extends StatelessWidget {
                 text: "Coming Soon! 😀 ",
               ),
               SizedBox(
-                height: widgetHeight(320),
+                height: widgetHeight(240),
                 child: ListView.separated(
                   physics: const BouncingScrollPhysics(),
                   itemCount: 2,

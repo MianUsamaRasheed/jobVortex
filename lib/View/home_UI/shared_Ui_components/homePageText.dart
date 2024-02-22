@@ -3,7 +3,8 @@ import 'package:jobvortex/Model/utils/colors.dart';
 
 class HomePageText extends StatelessWidget {
   const HomePageText({
-    super.key, required this.text,
+    super.key,
+    required this.text,
   });
   final String text;
 
@@ -18,8 +19,9 @@ class HomePageText extends StatelessWidget {
           fontSize: 18,
           fontWeight: FontWeight.w500,
           color: homePageTextColor,
+          fontFamily: 'Poppins'
         ),
-      )
-      ,);
+      ),
+    );
   }
 }

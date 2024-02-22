@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jobvortex/Model/custom_widgets/customs.dart';
 import 'package:jobvortex/Model/utils/colors.dart';
 import 'package:jobvortex/Model/sharedUI_Components/bottomSheetContainer.dart';
 import 'package:jobvortex/Model/utils/dimension.dart';
@@ -22,19 +23,24 @@ class AirConditionerIntro extends StatelessWidget {
               child: Image.asset('images/airConditionerIntro.jpg'),
             ),
             SizedBox(
-              height: widgetHeight(16),
+              height: widgetHeight(6),
             ),
             Expanded(
               child: BottomSheetContainer(
-                textData: "Our network boasts skilled professionals ready to tackle any AC challenge, ensuring a refreshing and comfortable indoor environment.",
-                onPressed: (){
+                textData: const PoppinsTextStyle(
+                    text:
+                        "Our network boasts skilled professionals ready to tackle any AC challenge, ensuring a refreshing and comfortable indoor environment.",
+                    textSize: 22,
+                    color: Colors.white,
+                    isBold: false,),
+                onPressed: () {
                   Navigator.push(
                     context,
                     PageTransition(
                       type: PageTransitionType.rightToLeft,
                       child: const PlumberIntro(),
                     ),
-                 );
+                  );
                 },
               ),
             ),

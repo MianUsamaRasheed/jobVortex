@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jobvortex/Model/custom_widgets/custom_expansion_tile.dart';
 import 'package:jobvortex/Model/custom_widgets/customs.dart';
 import 'package:jobvortex/Model/utils/colors.dart';
 import 'package:jobvortex/Model/utils/dimension.dart';
@@ -10,8 +11,9 @@ class Profile extends StatelessWidget {
   Widget build(BuildContext context) {
     initMediaQuerySize(context);
     return SafeArea(
+      bottom: false,
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: const Color(0xFFE8F5FF),
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -37,7 +39,8 @@ class Profile extends StatelessWidget {
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 18,
-                            fontWeight: FontWeight.bold),
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Poppins'),
                       ),
                       IconButton(
                           onPressed: () {},
@@ -56,7 +59,7 @@ class Profile extends StatelessWidget {
                       child: Image.asset(
                         'images/myimage.jpg',
                         height: widgetHeight(110),
-                        width: widgetWidth(80),
+                        width: widgetWidth(100),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -67,22 +70,25 @@ class Profile extends StatelessWidget {
                   padding: EdgeInsets.only(
                       top: widgetHeight(20), left: widgetWidth(20)),
                   child: SizedBox(
-                    height: widgetHeight(40),
+                    height: widgetHeight(25),
                     width: double.infinity,
                     child: const Text(
                       "Abdullah Rashid",
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 20,
-                          fontWeight: FontWeight.bold),
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Poppins'),
                     ),
                   )),
               Padding(
                 padding: EdgeInsets.only(left: widgetWidth(20)),
                 child: SizedBox(
-                    height: widgetHeight(30),
+                    height: widgetHeight(20),
                     width: double.infinity,
-                    child: const CustomGreyText(text: "@abdullahr01")),
+                    child: const CustomGreyText(
+                      text: "@abdullahr01",
+                    )),
               ),
               SizedBox(
                 height: widgetHeight(20),
@@ -90,40 +96,46 @@ class Profile extends StatelessWidget {
               CustomExpansionWidget(
                 leadingIcon: const Icon(Icons.person),
                 titleText: "Personal Information",
-                childWidget: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const CustomGreyText(text: "Abdullah Rashid"),
-                        SizedBox(
-                          width: widgetWidth(140),
-                        ),
-                        Container(
-                          height: widgetHeight(30),
-                          width: widgetWidth(50),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(color: blueAppThemeColor),
-                              color: extraLightBlueAppTheme),
-                          child: const Center(
-                              child: Text(
-                            "Edit",
-                            style: TextStyle(color: lightBlueAppTheme),
-                          )),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: widgetHeight(10),
-                    ),
-                    const CustomGreyText(text: "abdullahRashid01@gmail.com"),
-                    SizedBox(
-                      height: widgetHeight(10),
-                    ),
-                    const CustomGreyText(text: "+81-03093023"),
-                  ],
+                childWidget: SizedBox(
+                  height: widgetHeight(130),
+                  width: widgetWidth(double.infinity),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const CustomGreyText(text: "Abdullah Rashid"),
+                          SizedBox(
+                            width: widgetWidth(140),
+                          ),
+                          Container(
+                            height: widgetHeight(30),
+                            width: widgetWidth(50),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                border: Border.all(color: blueAppThemeColor),
+                                color: extraLightBlueAppTheme),
+                            child: const Center(
+                                child: Text(
+                              "Edit",
+                              style: TextStyle(
+                                  color: lightBlueAppTheme,
+                                  fontFamily: 'Poppins'),
+                            )),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: widgetHeight(10),
+                      ),
+                      const CustomGreyText(text: "abdullahRashid01@gmail.com"),
+                      SizedBox(
+                        height: widgetHeight(10),
+                      ),
+                      const CustomGreyText(text: "+81-03093023"),
+                    ],
+                  ),
                 ),
               ),
               CustomExpansionWidget(
@@ -139,22 +151,26 @@ class Profile extends StatelessWidget {
                         style: TextStyle(
                             color: Colors.grey,
                             fontWeight: FontWeight.bold,
-                            fontSize: 17),
+                            fontSize: 17,
+                            fontFamily: 'Poppins'),
                       ),
                     ),
                   )),
               CustomExpansionWidget(
                 leadingIcon: const Icon(Icons.phone_in_talk),
                 titleText: "Customer Support",
-                childWidget: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const CustomGreyText(text: "JVertex@business.com"),
-                    SizedBox(
-                      height: widgetHeight(10),
-                    ),
-                    const CustomGreyText(text: "+47-02279206"),
-                  ],
+                childWidget: Padding(
+                  padding: EdgeInsets.only(right: widgetWidth(170)),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const CustomGreyText(text: "JVertex@business.com"),
+                      SizedBox(
+                        height: widgetHeight(10),
+                      ),
+                      const CustomGreyText(text: "+47-02279206"),
+                    ],
+                  ),
                 ),
               ),
               CustomExpansionWidget(
@@ -171,37 +187,45 @@ class Profile extends StatelessWidget {
                         style: TextStyle(
                             color: Colors.grey,
                             fontWeight: FontWeight.bold,
-                            fontSize: 15),
+                            fontSize: 15,
+                            fontFamily: 'Poppins'),
                       ),
                     ),
                   )),
               CustomExpansionWidget(
                   leadingIcon: const Icon(Icons.power_settings_new_outlined),
                   titleText: "Log out",
-                  childWidget: Row(
-                    children: [
-                      const CustomGreyText(text: "Log out "),
-                      SizedBox(
-                        width: widgetWidth(90),
-                      ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: Container(
-                          height: widgetHeight(60),
-                          width: widgetWidth(90),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.red[100]),
-                          child: const Center(
-                            child: Icon(
-                              Icons.logout_outlined,
-                              color: Colors.red,
+                  childWidget: DummyGreyContainer(
+                      heightD: widgetHeight(80),
+                      widthD: widgetWidth(280),
+                      colorVisible: false,
+                      child: Row(
+                        children: [
+                          const CustomGreyText(
+                            text: "Log out ",
+                          ),
+                          SizedBox(
+                            width: widgetWidth(90),
+                          ),
+                          GestureDetector(
+                            onTap: () {},
+                            child: Container(
+                              height: widgetHeight(60),
+                              width: widgetWidth(90),
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.red),
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: Colors.red[100]),
+                              child: const Center(
+                                child: Icon(
+                                  Icons.logout_outlined,
+                                  color: Colors.red,
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                    ],
-                  )),
+                        ],
+                      ))),
               SizedBox(
                 height: widgetHeight(20),
               ),
@@ -212,7 +236,8 @@ class Profile extends StatelessWidget {
                   style: TextStyle(
                       color: Colors.black,
                       fontSize: 18,
-                      fontWeight: FontWeight.bold),
+                      fontWeight: FontWeight.bold,
+                      fontFamily: "Poppins"),
                 ),
               ),
               Padding(
@@ -224,7 +249,8 @@ class Profile extends StatelessWidget {
                     "192293839",
                     style: TextStyle(
                         color: Colors.grey,
-                        fontSize: 15),
+                        fontSize: 15,
+                        fontFamily: "Poppins"),
                   ),
                 ),
               )
@@ -232,31 +258,6 @@ class Profile extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class CustomExpansionWidget extends StatelessWidget {
-  final Widget leadingIcon;
-  final String titleText;
-  final Widget childWidget;
-  const CustomExpansionWidget(
-      {super.key,
-      required this.leadingIcon,
-      required this.titleText,
-      required this.childWidget});
-
-  @override
-  Widget build(BuildContext context) {
-    return ExpansionTile(
-      iconColor: blueAppThemeColor,
-      backgroundColor: Colors.grey[200],
-      leading: leadingIcon,
-      title: Text(titleText),
-      children: [
-        Padding(
-            padding: EdgeInsets.only(left: widgetWidth(55)), child: childWidget)
-      ],
     );
   }
 }
