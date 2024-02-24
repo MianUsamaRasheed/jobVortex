@@ -1,11 +1,60 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:jobvortex/Controller/worker_data_controller.dart';
 import 'package:jobvortex/Model/custom_widgets/custom_expansion_tile.dart';
 import 'package:jobvortex/Model/custom_widgets/customs.dart';
 import 'package:jobvortex/Model/utils/colors.dart';
 import 'package:jobvortex/Model/utils/dimension.dart';
+import 'package:provider/provider.dart';
 
-class WorkerProfilePage extends StatelessWidget {
+class WorkerProfilePage extends StatefulWidget {
   const WorkerProfilePage({super.key});
+
+  @override
+  State<WorkerProfilePage> createState() => _WorkerProfilePageState();
+}
+
+class _WorkerProfilePageState extends State<WorkerProfilePage> {
+  bool isImageSelected = false;
+  File? imageFile;
+
+  _pickImagefromGallery() async {
+    try {
+      final pickedImage =
+          await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (pickedImage != null) {
+        setState(() {
+          imageFile = File(pickedImage.path);
+          isImageSelected = true;
+          Provider.of<UserModel>(context,listen: false).imageSelected(isImageSelected);
+        });
+      } else {
+        print('User didnt pick any image.');
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  _pickImagefromCamera() async {
+    try {
+      final pickedImage =
+          await ImagePicker().pickImage(source: ImageSource.camera);
+      if (pickedImage != null) {
+        setState(() {
+          imageFile = File(pickedImage.path);
+          isImageSelected = true;
+          Provider.of<UserModel>(context,listen: false).imageSelected(isImageSelected);
+
+        });
+      } else {
+        print('User didnt pick any image.');
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,15 +103,60 @@ class WorkerProfilePage extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(
                         top: widgetHeight(90), left: widgetWidth(10)),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(100),
-                      child: Image.asset(
-                        'images/clientPic.jpg',
-                        height: widgetHeight(110),
-                        width: widgetWidth(100),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                    child: Provider.of<UserModel>(context).isImageSelected
+                        ? ClipRRect(
+                            borderRadius: BorderRadius.circular(100),
+                            child: Image.file(
+                              Provider.of<UserModel>(context,listen: true).imagePath,
+                              height: widgetHeight(110),
+                              width: widgetWidth(100),
+                              fit: BoxFit.cover,
+                            ),
+                          )
+                        : IconButton(
+                            icon: const Icon(
+                                Icons.camera_alt_outlined,
+                              color: Colors.white,
+                              size: 35,
+
+                            ),
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    shadowColor: Colors.white,
+                                    surfaceTintColor: Colors.white,
+                                    title: Center(child: Text("Select Image")),
+                                    content: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        ListTile(
+                                          leading:
+                                              Icon(Icons.camera_alt_outlined),
+                                          title: Text("Take Photo"),
+                                          onTap: () {
+                                            _pickImagefromCamera();
+                                            Provider.of<UserModel>(context,listen: false).setImagePath(imageFile!);
+
+                                          },
+                                        ),
+                                        ListTile(
+                                          leading: Icon(Icons.photo),
+                                          title: Text("Choose from Gallery"),
+                                          onTap: () {
+                                            _pickImagefromGallery();
+                                            Provider.of<UserModel>(context,listen: false).setImagePath(imageFile!);
+
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                          ),
                   )
                 ],
               ),

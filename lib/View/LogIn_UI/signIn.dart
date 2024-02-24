@@ -108,41 +108,6 @@ class _SignInState extends State<SignIn> {
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
-  // Future<void> signInWithFacebook() async {
-  //   try {
-  //     final LoginResult loginResult =
-  //     await FacebookAuth.instance.login(permissions: [
-  //       'email',
-  //     ]);
-  //
-  //     final OAuthCredential facebookAuthCredential =
-  //     FacebookAuthProvider.credential(loginResult.accessToken!.token);
-  //
-  //     final userData = await FacebookAuth.instance.getUserData();
-  //
-  //     userEmail = userData["email"];
-  //
-  //     await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
-  //   } on FirebaseAuthException catch (e) {
-  //     String errorMessage;
-  //     switch (e.code) {
-  //       case 'user-not-found':
-  //         errorMessage = 'No user found for that email.';
-  //         break;
-  //       case 'invalid-credential':
-  //         errorMessage = 'Wrong password or username provided for that user.';
-  //         break;
-  //
-  //       default:
-  //       // Handle unexpected error codes
-  //         errorMessage = 'An unexpected error occurred. Please try again.';
-  //         break;
-  //     }
-  //     print("FirebaseAuthException caught: ${e.code}");
-  //     showSnackbar(errorMessage);
-  //   }
-  // }
-
   facebookButtonClick() {
     signInWithFacebook().then((user) {
       Navigator.of(context).push(MaterialPageRoute(

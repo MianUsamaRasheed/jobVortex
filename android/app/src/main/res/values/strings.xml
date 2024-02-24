@@ -1,1 +1,7 @@
-
+<?xml version="1.0" encoding="utf-8"?>
+<resource>
+    <string name="app_name">JobVortex</string>
+    <string name="facebook_app_id">259338923781427</string>
+    <string name="fb_login_protocol_scheme">fb259338923781427</string>
+    <string name="facebook_client_token">e2ccd80ee2d3860f2d15e84a46c01abd</string>
+</resource>

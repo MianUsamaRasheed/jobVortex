@@ -1,9 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:jobvortex/View/Introductory_UI/splash.dart';
+import 'package:provider/provider.dart';
 import 'Model/utils/dimension.dart';
 import 'firebase_options.dart';
-
+import 'package:jobvortex/Controller/worker_data_controller.dart';
+GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   try {
@@ -13,7 +15,12 @@ Future<void> main() async {
   } catch (e) {
     print('Error initializing Firebase: $e');
   }
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+        create: (context) => UserModel(),
+        child: MyApp(),
+    )
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -24,6 +31,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     initMediaQuerySize(context);
     return MaterialApp(
+      navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
