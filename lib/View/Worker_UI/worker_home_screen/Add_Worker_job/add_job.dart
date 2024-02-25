@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:jobvortex/Controller/worker_navigation_controller.dart';
 import 'package:jobvortex/Model/custom_widgets/alert_dialog_custom.dart';
@@ -5,6 +7,8 @@ import 'package:jobvortex/Model/custom_widgets/customs.dart';
 import 'package:jobvortex/Model/utils/colors.dart';
 import 'package:jobvortex/Model/utils/dimension.dart';
 import 'package:jobvortex/View/LogIn_UI/sharedUI_Components/customTextField.dart';
+import 'package:provider/provider.dart';
+import 'package:jobvortex/Controller/worker_data_controller.dart';
 
 class AddTheJob extends StatefulWidget {
   const AddTheJob({super.key});
@@ -17,16 +21,28 @@ class _AddTheJobState extends State<AddTheJob> {
   String? dropTheValue;
   final servicePrice = TextEditingController();
   final typeService = TextEditingController();
-
+  
   final List<String> services = [
     "Electrician",
     "Plumbing",
-    "A/C Repairing",
+    "AC Repairing",
     "Maid"
   ];
 
+
+  void _submitJob() {
+    // Access Provider.of in response to form submission
+    Provider.of<UserModel>(context, listen: false).setJobTitle(typeService.text);
+    Provider.of<UserModel>(context,listen: false).setJobPrice(servicePrice.text);
+
+    // You can perform other actions here, like submitting the form to a database
+  }
+
+
   @override
   Widget build(BuildContext context) {
+     String serviceType;
+
     initMediaQuerySize(context);
     return Scaffold(
       backgroundColor: const Color(0xFFE8F5FF),
@@ -203,6 +219,16 @@ class _AddTheJobState extends State<AddTheJob> {
                   children: [
                     ElevatedButton(
                       onPressed: () {
+                        final provider_var = Provider.of<UserModel>(context,listen: false);
+                        FirebaseFirestore.instance.collection(dropTheValue.toString()).doc(
+                          provider_var.uid
+                        ).set({
+                          "Name": provider_var.workerName,
+                          "JobTitle": typeService.text,
+                          "Price": servicePrice.text,
+                          "Uid": provider_var.uid,
+                          "imageUrl" : provider_var.imageUrl,
+                        });
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) =>
                                 const WorkerNavigationController()));

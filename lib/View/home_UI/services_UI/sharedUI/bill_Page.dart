@@ -4,13 +4,17 @@ import 'package:jobvortex/Model/utils/dimension.dart';
 import 'package:jobvortex/View/home_UI/services_UI/sharedUI/payment_page.dart';
 
 class BillPage extends StatelessWidget {
+
   const BillPage(
-      {super.key, this.service, this.name, this.pricePkr, this.imagePath});
+
+      {super.key, this.service, this.name, this.pricePkr, this.imagePath, this.workerUID});
 
   final String? service;
   final String? name;
   final String? pricePkr;
   final String? imagePath;
+  final String? workerUID;
+
   @override
   Widget build(BuildContext context) {
     initMediaQuerySize(context);
@@ -107,7 +111,10 @@ class BillPage extends StatelessWidget {
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => const PaymentPage(),
+                  builder: (context) => PaymentPage(
+                      workerUID: workerUID,
+                      pricePkr: pricePkr
+                  ),
                 ),
               );
             },

@@ -7,9 +7,15 @@ class WorkerDetails extends StatelessWidget {
   final String? service;
   final String? name;
   final String? pricePkr;
-  final String? imagePath;
+  final String? imageUrl;
+  final String? workerUid;
   const WorkerDetails(
-      {super.key, this.service, this.name, this.pricePkr, this.imagePath});
+      {super.key,
+      this.service,
+      this.name,
+      this.pricePkr,
+      this.imageUrl,
+      this.workerUid});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +24,7 @@ class WorkerDetails extends StatelessWidget {
       "Experience": "2 years",
       "Education": "Metric Pass",
       "HomeTown": "Islamabad",
-      "Expertise": "Electric Wiring"
+      "Expertise": service.toString(),
     };
     initMediaQuerySize(context);
     return Scaffold(
@@ -32,9 +38,7 @@ class WorkerDetails extends StatelessWidget {
         title: const Text(
           "Worker Details",
           style: TextStyle(
-            color: electricianServiceAppBarTextColor,
-            fontFamily: 'Poppins'
-          ),
+              color: electricianServiceAppBarTextColor, fontFamily: 'Poppins'),
         ),
       ),
       body: SingleChildScrollView(
@@ -60,10 +64,13 @@ class WorkerDetails extends StatelessWidget {
                   SizedBox(
                     height: widgetHeight(20),
                   ),
-                  CircleAvatar(
-                    radius: 90,
-                    backgroundImage: AssetImage(
-                      imagePath.toString(),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(100),
+                    child: Image.network(
+                      imageUrl!,
+                      height: widgetHeight(110),
+                      width: widgetWidth(110),
+                      fit: BoxFit.cover,
                     ),
                   ),
                   SizedBox(
@@ -72,10 +79,9 @@ class WorkerDetails extends StatelessWidget {
                   Text(
                     name.toString(),
                     style: const TextStyle(
-                      fontSize: 20,
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.bold
-                    ),
+                        fontSize: 20,
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
                     height: widgetHeight(10),
@@ -83,10 +89,9 @@ class WorkerDetails extends StatelessWidget {
                   Text(
                     service.toString(),
                     style: const TextStyle(
-                      fontSize: 20,
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.bold
-                    ),
+                        fontSize: 20,
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.bold),
                   )
                 ],
               ),
@@ -113,14 +118,14 @@ class WorkerDetails extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.of(context).push(
+                Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
                     builder: (context) => BillPage(
-                      imagePath: imagePath,
-                      name: name,
-                      pricePkr: pricePkr,
-                      service: service,
-                    ),
+                        imagePath: imageUrl,
+                        name: name,
+                        pricePkr: pricePkr,
+                        service: service,
+                        workerUID: workerUid),
                   ),
                 );
               },
@@ -134,11 +139,10 @@ class WorkerDetails extends StatelessWidget {
                     const Text(
                       "Order Now",
                       style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Poppins'
-                      ),
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Poppins'),
                     ),
                     SizedBox(
                       width: widgetWidth(15),
@@ -178,17 +182,11 @@ class CustomWorkerListTile extends StatelessWidget {
         leading: Text(
           leadingText,
           style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Poppins'
-          ),
+              fontSize: 16, fontWeight: FontWeight.bold, fontFamily: 'Poppins'),
         ),
         trailing: Text(
           trailingText,
-          style: const TextStyle(
-            fontSize: 15,
-            fontFamily: 'Poppins'
-          ),
+          style: const TextStyle(fontSize: 15, fontFamily: 'Poppins'),
         ),
       ),
     );

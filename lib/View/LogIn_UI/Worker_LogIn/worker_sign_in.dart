@@ -1,13 +1,21 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:jobvortex/Controller/worker_data_controller.dart';
 import 'package:jobvortex/Controller/worker_navigation_controller.dart';
 import 'package:jobvortex/Model/custom_widgets/customs.dart';
 import 'package:jobvortex/Model/custom_widgets/fade_in.dart';
 import 'package:jobvortex/Model/utils/colors.dart';
 import 'package:jobvortex/Model/utils/dimension.dart';
+import 'package:jobvortex/View/LogIn_UI/Worker_LogIn/worker_sign_up.dart';
 import 'package:jobvortex/View/LogIn_UI/sharedUI_Components/customTextField.dart';
 import 'package:jobvortex/View/LogIn_UI/sharedUI_Components/login_screen_button.dart';
 import 'package:jobvortex/View/LogIn_UI/sharedUI_Components/textBtwDividers.dart';
 import 'package:jobvortex/View/LogIn_UI/signUp.dart';
+import 'package:provider/provider.dart';
+import 'package:jobvortex/main.dart';
 
 class WorkerSignIn extends StatefulWidget {
 
@@ -19,8 +27,152 @@ class WorkerSignIn extends StatefulWidget {
 
 class _WorkerSignInState extends State<WorkerSignIn> {
 
+  String? errorMessage = '';
+  bool isLogin = false;
+  String userEmail = "";
+
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
+  void loginTheUser() async {
+    // Show loading circle
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (context) {
+        return const Center(child: CircularProgressIndicator());
+      },
+    );
+    try {
+      // Login the user
+      UserCredential userCredential =
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+
+      Navigator.of(context, rootNavigator: true).pop();
+
+      FirebaseFirestore.instance
+          .collection("Worker_User")
+          .doc(userCredential.user!.uid)
+          .get()
+          .then((doc) {
+        if (doc.exists) {
+          String userName = doc.get('Name');
+          String id = userCredential.user!.uid;
+          final provider = Provider.of<UserModel>(navigatorKey.currentContext!, listen: false);
+          provider.setWorkerName(userName);
+          provider.setUserID(id);
+          provider.setImageUrl(doc.get('imageUrl'));
+          provider.setWorkerEmail(doc.get('Email'));
+          provider.setWorkerNumber(doc.get('PhoneNumber'));
+
+        } else {
+          print('Document does not exist');
+        }
+      }).catchError((error) {
+        print('Error retrieving user name: $error');
+      });
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => WorkerNavigationController(
+            )));
+      } on FirebaseAuthException catch (e) {
+      // Dismiss the loading circle
+      Navigator.of(context, rootNavigator: true).pop();
+      // Handling different FirebaseAuthException error codes
+      String errorMessage;
+      switch (e.code) {
+        case 'user-not-found':
+          errorMessage = 'No user found for that email.';
+          break;
+        case 'invalid-credential':
+          errorMessage = 'Wrong password or username provided for that user.';
+          break;
+
+        default:
+        // Handle unexpected error codes
+          errorMessage = 'An unexpected error occurred. Please try again.';
+          break;
+      }
+      print("FirebaseAuthException caught: ${e.code}");
+      showSnackbar(errorMessage);
+    }
+  }
+
+
+  void showSnackbar(String errorMessage) {
+    final snackBar = SnackBar(
+      content: Text(errorMessage),
+      duration: const Duration(seconds: 3),
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  Widget _errorMessage() {
+    return Text(errorMessage == '' ? '' : 'Humm ? $errorMessage');
+  }
+
+  googleButtonClick() {
+    signInWithGoogle().then((user) {
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (context) => const WorkerNavigationController()));
+    });
+  }
+
+  signInWithGoogle() async {
+    //Sign in process
+    final GoogleSignInAccount? gUser = await GoogleSignIn().signIn();
+
+    //obtain auth detail from user
+    final GoogleSignInAuthentication gAuth = await gUser!.authentication;
+
+    //create credential for the user
+    final credential = GoogleAuthProvider.credential(
+        accessToken: gAuth.accessToken, idToken: gAuth.idToken);
+
+    //finally lets sign in
+    return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
+
+  facebookButtonClick() {
+    signInWithFacebook().then((user) {
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => const WorkerNavigationController()));
+    });
+  }
+
+  Future<UserCredential?> signInWithFacebook() async {
+    // Trigger the sign-in flow
+    final LoginResult? loginResult = await FacebookAuth.instance.login(permissions: ["public_profile", "email"]).then((value) async {
+      await FacebookAuth.instance.getUserData();
+    });
+
+    if (loginResult != null) {
+      // Check if loginResult.accessToken is not null before accessing its properties
+      final AccessToken? accessToken = loginResult.accessToken;
+      if (accessToken != null) {
+        // Create a credential from the access token
+        final OAuthCredential facebookAuthCredential =
+        FacebookAuthProvider.credential(accessToken.token);
+
+        // Once signed in, return the UserCredential
+        return await FirebaseAuth.instance
+            .signInWithCredential(facebookAuthCredential);
+      } else {
+        // Handle the case where accessToken is null
+        print('Access token is null');
+        return null;
+      }
+    } else {
+      // Handle the case where loginResult is null
+      print('Login result is null');
+      return null;
+    }
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -114,12 +266,7 @@ class _WorkerSignInState extends State<WorkerSignIn> {
                 child: LoginScreenButton(
                   buttonText: "Sign In",
                   buttonClicked: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const WorkerNavigationController(),
-                      ),
-                    );
+                    loginTheUser();
                   },
                 ),
               ),
@@ -166,7 +313,7 @@ class _WorkerSignInState extends State<WorkerSignIn> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const SignUp()),
+                          MaterialPageRoute(builder: (context) => const WorkerSignUp()),
                         );
                       },
                       child: const PoppinsTextStyle(

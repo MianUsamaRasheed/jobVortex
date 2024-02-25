@@ -1,14 +1,24 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:jobvortex/Controller/client_data_controller.dart';
 import 'package:jobvortex/Controller/navigationController.dart';
 import 'package:jobvortex/Model/utils/colors.dart';
 import 'package:jobvortex/Model/utils/dimension.dart';
-import 'package:jobvortex/View/home_UI/homePage.dart';
+import 'package:provider/provider.dart';
+
 
 class PaymentPage extends StatelessWidget {
-  const PaymentPage({super.key});
+  const PaymentPage({super.key, this.workerUID, this.pricePkr});
+  final String? workerUID;
+  final String? pricePkr;
+
 
   @override
   Widget build(BuildContext context) {
+
+    final addressController = TextEditingController();
+    final phoneNumberController = TextEditingController();
+
     initMediaQuerySize(context);
     return SafeArea(
       bottom: false,
@@ -53,9 +63,9 @@ class PaymentPage extends StatelessWidget {
                     ),
                     SizedBox(
                       height: widgetHeight(50),
-                      child: const TextField(
-                        obscureText: true,
-                        decoration: InputDecoration(
+                      child: TextField(
+                        controller: addressController,
+                        decoration: const InputDecoration(
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(
                               Radius.circular(8.0),
@@ -77,9 +87,10 @@ class PaymentPage extends StatelessWidget {
                     ),
                     SizedBox(
                       height: widgetHeight(50),
-                      child: const TextField(
-                        obscureText: true,
-                        decoration: InputDecoration(
+                      child: TextField(
+                        controller: phoneNumberController,
+
+                        decoration: const InputDecoration(
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(
                               Radius.circular(8.0),
@@ -120,10 +131,10 @@ class PaymentPage extends StatelessWidget {
                     SizedBox(
                       height: widgetHeight(140),
                     ),
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           "Total",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
@@ -131,8 +142,8 @@ class PaymentPage extends StatelessWidget {
                             fontFamily: 'Poppins'
                           ),
                         ),
-                        Text("400 PKR",
-                        style: TextStyle(
+                        Text("$pricePkr PKR",
+                        style: const TextStyle(
                           fontSize: 15,
                           fontFamily: 'Poppins'
                         ),
@@ -155,7 +166,7 @@ class PaymentPage extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: (){
-                        Navigator.push(context,MaterialPageRoute(builder: (context) => const HomePage(),));
+                        Navigator.push(context,MaterialPageRoute(builder: (context) => const NavigationController(),));
                       },
                       child: const Text(
                         "Cancel",
@@ -172,17 +183,6 @@ class PaymentPage extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: (){
-                        // Navigator.push(context, MaterialPageRoute(builder: (context) => AlertDialog(
-                        //   title: Container(
-                        //     //color: Colors.white,
-                        //     child: Image(
-                        //       image: AssetImage("images/thankyou.jpg"),
-                        //     ),
-                        //   ),
-                        //   content: Text(
-                        //     "Thank You",
-                        //   ),
-                        // )));
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
@@ -221,6 +221,23 @@ class PaymentPage extends StatelessWidget {
                                     ),
                                     ElevatedButton(
                                       onPressed: () {
+                                        final provider = Provider.of<ClientModel>(context,listen: false);
+                                        String clientId = provider.uid.toString(); // Replace with actual user ID
+                                        String clientName = provider.clientName.toString(); // Replace with actual user name
+                                        String location = addressController.toString().trim(); // Replace with actual location
+                                        String phoneNumber = phoneNumberController.toString().trim(); // Replace with actual phone number
+
+                                        // Add document to Firestore
+                                         FirebaseFirestore.instance
+                                            .collection('Worker_User')
+                                            .doc(workerUID) // Replace with actual worker ID
+                                            .collection('JobsReceived')
+                                            .add({
+                                          'userId': clientId,
+                                          'name': clientName,
+                                          'location': location,
+                                          'phoneNumber': phoneNumber,
+                                        });
                                         Navigator.push(context, MaterialPageRoute(builder: (context)=> const NavigationController(),),); // Close the AlertDialog
                                       },
                                       child: const Text("OK", style: TextStyle(fontFamily: 'Poppins'),),

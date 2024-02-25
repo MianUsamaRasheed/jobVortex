@@ -1,14 +1,101 @@
+import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:jobvortex/Controller/worker_data_controller.dart';
 import 'package:jobvortex/Model/custom_widgets/custom_expansion_tile.dart';
 import 'package:jobvortex/Model/custom_widgets/customs.dart';
 import 'package:jobvortex/Model/utils/colors.dart';
 import 'package:jobvortex/Model/utils/dimension.dart';
+import 'package:jobvortex/View/LogIn_UI/Worker_LogIn/worker_sign_in.dart';
+import 'package:provider/provider.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
-class WorkerProfilePage extends StatelessWidget {
+
+class WorkerProfilePage extends StatefulWidget {
   const WorkerProfilePage({super.key});
 
   @override
+  State<WorkerProfilePage> createState() => _WorkerProfilePageState();
+}
+
+class _WorkerProfilePageState extends State<WorkerProfilePage> {
+
+  File? imageFile;
+
+  Future<void> updateFirebaseDocument(String imageUrl) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection("Worker_User")
+          .doc(Provider.of<UserModel>(context,listen: false).uid)
+          .update({'imageUrl': imageUrl})
+          .then((value) => print("Document updated successfully"));
+    } catch (error) {
+      print("Error updating document: $error");
+    }
+  }
+
+  Future<String> uploadImageToFirebase(File imageFile) async {
+    try {
+      FirebaseStorage storage = FirebaseStorage.instance;
+      Reference ref = storage.ref().child('profile_images/${imageFile.path}');
+      UploadTask uploadTask = ref.putFile(imageFile);
+
+      TaskSnapshot snapshot = await uploadTask;
+      String downloadUrl = await snapshot.ref.getDownloadURL();
+      return downloadUrl;
+    } on FirebaseException catch (e) {
+      // Handle Firebase errors
+      return ""; // Return an empty string if the upload fails
+    }
+  }
+
+  _pickImagefromGallery() async {
+    try {
+      final pickedImage =
+          await ImagePicker().pickImage(source: ImageSource.gallery);
+
+      if (pickedImage != null) {
+        imageFile = File(pickedImage.path);
+        String imageUrl = await uploadImageToFirebase(imageFile!);
+        final provider = Provider.of<UserModel>(context, listen: false);
+
+        setState(() {
+          provider.setImageUrl(imageUrl);
+          updateFirebaseDocument(imageUrl);
+        });
+      } else {
+        print('User didnt pick any image.');
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  _pickImagefromCamera() async {
+    try {
+      final pickedImage =
+          await ImagePicker().pickImage(source: ImageSource.camera);
+          String imageUrl = await uploadImageToFirebase(imageFile!);
+      if (pickedImage != null) {
+        imageFile = File(pickedImage.path);
+        String imageUrl = await uploadImageToFirebase(imageFile!);
+        setState(() {
+          Provider.of<UserModel>(context, listen: false).setImageUrl(imageUrl);
+          updateFirebaseDocument(imageUrl);
+        });
+      } else {
+        print('User didnt pick any image.');
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<UserModel>(context);
+
     initMediaQuerySize(context);
     return SafeArea(
       bottom: false,
@@ -54,42 +141,83 @@ class WorkerProfilePage extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(
                         top: widgetHeight(90), left: widgetWidth(10)),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(100),
-                      child: Image.asset(
-                        'images/clientPic.jpg',
-                        height: widgetHeight(110),
-                        width: widgetWidth(100),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                    child: GestureDetector(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            shadowColor: Colors.white,
+                            surfaceTintColor: Colors.white,
+                            title: Center(child: Text("Select Image")),
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                ListTile(
+                                  leading:
+                                  Icon(Icons.camera_alt_outlined),
+                                  title: Text("Take Photo"),
+                                  onTap: () {
+                                    _pickImagefromCamera();
+                                    Provider.of<UserModel>(
+                                        context, listen: false).setImagePath(
+                                        imageFile!);
+                                  },
+                                ),
+                                ListTile(
+                                  leading: Icon(Icons.photo),
+                                  title: Text("Choose from Gallery"),
+                                  onTap: () {
+                                    _pickImagefromGallery();
+                                    Provider.of<UserModel>(
+                                        context, listen: false).setImagePath(
+                                        imageFile!);
+                                  },
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      );
+                    },
+                      child: ClipRRect(
+                              borderRadius: BorderRadius.circular(100),
+                              child:  Image.network(
+                                Provider.of<UserModel>(context).imageUrl!,
+                                height: widgetHeight(110),
+                                width: widgetWidth(100),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+
                   )
-                ],
               ),
+        ],
+      ),
               Padding(
                   padding: EdgeInsets.only(
                       top: widgetHeight(20), left: widgetWidth(20)),
                   child: SizedBox(
                     height: widgetHeight(25),
                     width: double.infinity,
-                    child: const Text(
-                      "Muhammad Usama",
-                      style: TextStyle(
+                    child: Text(
+                     provider.workerName.toString() ,
+                      style: const TextStyle(
                           color: Colors.black,
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Poppins'),
                     ),
                   )),
-              Padding(
-                padding: EdgeInsets.only(left: widgetWidth(20)),
-                child: SizedBox(
-                    height: widgetHeight(20),
-                    width: double.infinity,
-                    child: const CustomGreyText(
-                      text: "@mianUSama",
-                    )),
-              ),
+              // Padding(
+              //   padding: EdgeInsets.only(left: widgetWidth(20)),
+              //   child: SizedBox(
+              //       height: widgetHeight(20),
+              //       width: double.infinity,
+              //       child: const CustomGreyText(
+              //         text: "@mianUSama",
+              //       )),
+              // ),
               SizedBox(
                 height: widgetHeight(20),
               ),
@@ -105,35 +233,35 @@ class WorkerProfilePage extends StatelessWidget {
                       Row(
                         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const CustomGreyText(text: "Muhammad Usama"),
+                          CustomGreyText(text: provider.workerName.toString()),
                           SizedBox(
                             width: widgetWidth(140),
                           ),
-                          Container(
-                            height: widgetHeight(30),
-                            width: widgetWidth(50),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                border: Border.all(color: blueAppThemeColor),
-                                color: extraLightBlueAppTheme),
-                            child: const Center(
-                                child: Text(
-                              "Edit",
-                              style: TextStyle(
-                                  color: lightBlueAppTheme,
-                                  fontFamily: 'Poppins'),
-                            )),
-                          )
+                          // Container(
+                          //   height: widgetHeight(30),
+                          //   width: widgetWidth(50),
+                          //   decoration: BoxDecoration(
+                          //       borderRadius: BorderRadius.circular(20),
+                          //       border: Border.all(color: blueAppThemeColor),
+                          //       color: extraLightBlueAppTheme),
+                          //   child: const Center(
+                          //       child: Text(
+                          //     "Edit",
+                          //     style: TextStyle(
+                          //         color: lightBlueAppTheme,
+                          //         fontFamily: 'Poppins'),
+                          //   )),
+                          // )
                         ],
                       ),
                       SizedBox(
                         height: widgetHeight(10),
                       ),
-                      const CustomGreyText(text: "MianUsama@gmail.com"),
+                      CustomGreyText(text: provider.workerEmail.toString()),
                       SizedBox(
                         height: widgetHeight(10),
                       ),
-                      const CustomGreyText(text: "+49-08309023"),
+                      CustomGreyText(text:provider.workerNumber.toString()),
                     ],
                   ),
                 ),
@@ -208,7 +336,9 @@ class WorkerProfilePage extends StatelessWidget {
                             width: widgetWidth(90),
                           ),
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const WorkerSignIn()));
+                            },
                             child: Container(
                               height: widgetHeight(60),
                               width: widgetWidth(90),
@@ -241,13 +371,13 @@ class WorkerProfilePage extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(right: widgetWidth(239)),
+                padding: EdgeInsets.only(right: widgetWidth(90)),
                 child: SizedBox(
                   height: widgetHeight(30),
-                  width: widgetWidth(100),
-                  child: const Text(
-                    "192293839",
-                    style: TextStyle(
+                  width: widgetWidth(250),
+                  child: Text(
+                    provider.uid.toString(),
+                    style: const TextStyle(
                         color: Colors.grey,
                         fontSize: 15,
                         fontFamily: "Poppins"),

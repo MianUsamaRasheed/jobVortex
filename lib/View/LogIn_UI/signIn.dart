@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:jobvortex/Controller/client_data_controller.dart';
 import 'package:jobvortex/Model/custom_widgets/customs.dart';
 import 'package:jobvortex/Model/custom_widgets/fade_in.dart';
 import 'package:jobvortex/Model/utils/colors.dart';
@@ -11,6 +13,8 @@ import 'package:jobvortex/View/LogIn_UI/sharedUI_Components/textBtwDividers.dart
 import 'package:jobvortex/View/LogIn_UI/sharedUI_Components/customTextField.dart';
 import 'package:jobvortex/View/LogIn_UI/signUp.dart';
 import 'package:jobvortex/Controller/navigationController.dart';
+import 'package:jobvortex/main.dart';
+import 'package:provider/provider.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -45,6 +49,28 @@ class _SignInState extends State<SignIn> {
       );
 
       Navigator.of(context, rootNavigator: true).pop();
+
+      FirebaseFirestore.instance
+          .collection("Client_User")
+          .doc(userCredential.user!.uid)
+          .get()
+          .then((doc) {
+        if (doc.exists) {
+          String userName = doc.get('Name');
+          String id = userCredential.user!.uid;
+          final provider = Provider.of<ClientModel>(navigatorKey.currentContext!, listen: false);
+          provider.setClientName(userName);
+          provider.setUserID(id);
+          provider.setImageUrl(doc.get('imageUrl'));
+          provider.setClientEmail(doc.get('Email'));
+          provider.setClientNumber(doc.get('PhoneNumber'));
+
+        } else {
+          print('Document does not exist');
+        }
+      }).catchError((error) {
+        print('Error retrieving user name: $error');
+      });
 
       if (userCredential.user != null) {
         Navigator.pushReplacement(context,
@@ -107,41 +133,6 @@ class _SignInState extends State<SignIn> {
     //finally lets sign in
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
-
-  // Future<void> signInWithFacebook() async {
-  //   try {
-  //     final LoginResult loginResult =
-  //     await FacebookAuth.instance.login(permissions: [
-  //       'email',
-  //     ]);
-  //
-  //     final OAuthCredential facebookAuthCredential =
-  //     FacebookAuthProvider.credential(loginResult.accessToken!.token);
-  //
-  //     final userData = await FacebookAuth.instance.getUserData();
-  //
-  //     userEmail = userData["email"];
-  //
-  //     await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
-  //   } on FirebaseAuthException catch (e) {
-  //     String errorMessage;
-  //     switch (e.code) {
-  //       case 'user-not-found':
-  //         errorMessage = 'No user found for that email.';
-  //         break;
-  //       case 'invalid-credential':
-  //         errorMessage = 'Wrong password or username provided for that user.';
-  //         break;
-  //
-  //       default:
-  //       // Handle unexpected error codes
-  //         errorMessage = 'An unexpected error occurred. Please try again.';
-  //         break;
-  //     }
-  //     print("FirebaseAuthException caught: ${e.code}");
-  //     showSnackbar(errorMessage);
-  //   }
-  // }
 
   facebookButtonClick() {
     signInWithFacebook().then((user) {
