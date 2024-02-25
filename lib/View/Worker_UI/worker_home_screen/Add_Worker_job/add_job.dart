@@ -227,6 +227,7 @@ class _AddTheJobState extends State<AddTheJob> {
                           "JobTitle": typeService.text,
                           "Price": servicePrice.text,
                           "Uid": provider_var.uid,
+                          "imageUrl" : provider_var.imageUrl,
                         });
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) =>

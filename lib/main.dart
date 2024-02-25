@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:jobvortex/Controller/client_data_controller.dart';
 import 'package:jobvortex/View/Introductory_UI/splash.dart';
 import 'package:provider/provider.dart';
 import 'Model/utils/dimension.dart';
@@ -16,10 +17,13 @@ Future<void> main() async {
     print('Error initializing Firebase: $e');
   }
   runApp(
-    ChangeNotifierProvider(
-        create: (context) => UserModel(),
-        child: MyApp(),
-    )
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => UserModel()),
+        ChangeNotifierProvider(create: (context) => ClientModel()), // Add ClientModel provider
+      ],
+      child: MyApp(),
+    ),
   );
 }
 

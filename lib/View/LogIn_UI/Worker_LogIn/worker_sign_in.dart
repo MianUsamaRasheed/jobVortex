@@ -64,6 +64,9 @@ class _WorkerSignInState extends State<WorkerSignIn> {
           final provider = Provider.of<UserModel>(navigatorKey.currentContext!, listen: false);
           provider.setWorkerName(userName);
           provider.setUserID(id);
+          provider.setImageUrl(doc.get('imageUrl'));
+          provider.setWorkerEmail(doc.get('Email'));
+          provider.setWorkerNumber(doc.get('PhoneNumber'));
 
         } else {
           print('Document does not exist');

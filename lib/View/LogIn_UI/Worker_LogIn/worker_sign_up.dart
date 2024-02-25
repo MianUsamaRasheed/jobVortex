@@ -53,9 +53,10 @@ class _WorkerSignUpState extends State<WorkerSignUp> {
           "PhoneNumber": mobileNumberController.text,
           "Email": emailController.text,
           "Password": passwordController.text,
+          "uid": user.uid,
+          "imageUrl" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBrGPJ2q7Abf54iQOe8H_w11p07aS1mN11YXa9AJTfO3i_mPSSu3P5sR-VGxruGswg5s8&usqp=CAU",
         });
         await worker_user.doc(user.uid).collection("JobsReceived").doc().set({
-
         });
       } else {
         errorMessage = "User creation failed";

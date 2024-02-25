@@ -2,42 +2,43 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-class UserModel extends ChangeNotifier {
-  String? jobTitle;
-  String? price;
+class ClientModel extends ChangeNotifier {
+
+
   String? uid;
-  String? workerName;
+  String? workerUid;
+  String? clientName;
   late File imagePath ;
-  String? workerEmail;
-  String? workerNumber;
+  String? clientEmail;
+  String? clientNumber;
 
   String? imageUrl;
 
 
-  setWorkerNumber(String number ) {
-    workerNumber = number;
+  setClientNumber(String number ) {
+    clientNumber = number;
     notifyListeners(); // Notify listeners when the user email changes
   }
-  setWorkerEmail(String email ) {
-    workerEmail = email;
+  setWorkerUid(String uid ) {
+    workerUid = uid;
     notifyListeners(); // Notify listeners when the user email changes
   }
-  setWorkerName(String name ) {
-    workerName = name;
+
+  setClientEmail(String email ) {
+    clientEmail = email;
     notifyListeners(); // Notify listeners when the user email changes
   }
-  setJobPrice(String newPrice ) {
-    price = newPrice;
+
+  setClientName(String name ) {
+    clientName = name;
     notifyListeners(); // Notify listeners when the user email changes
   }
+
   void setUserID(String id ) {
     uid = id;
     notifyListeners(); // Notify listeners when the user email changes
   }
-  void setJobTitle(String jobTitle ) {
-    this.jobTitle = jobTitle;
-    notifyListeners(); // Notify listeners when the user email changes
-  }
+
   setImagePath(File image){
     imagePath = image;
     notifyListeners();

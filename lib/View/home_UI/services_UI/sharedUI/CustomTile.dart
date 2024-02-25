@@ -6,17 +6,17 @@ class CustomTile extends StatelessWidget {
   final VoidCallback onClick;
   final String service;
   final String name;
-  final String reviewRating;
+  // final String reviewRating;
   final String pricePkr;
-  final String imagePath;
+  final String imageUrl;
   const CustomTile(
       {super.key,
       required this.onClick,
       required this.service,
       required this.name,
-      required this.reviewRating,
+      // required this.reviewRating,
       required this.pricePkr,
-      required this.imagePath});
+      required this.imageUrl});
   @override
   Widget build(BuildContext context) {
     initMediaQuerySize(context);
@@ -40,17 +40,26 @@ class CustomTile extends StatelessWidget {
             padding: const EdgeInsets.all(10.0),
             child: Row(
               children: [
+                // ClipRRect(
+                //   borderRadius: BorderRadius.circular(8),
+                //   child: Container(
+                //     decoration:
+                //         BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                //     child: Image.asset(
+                //       imagePath.toString(),
+                //       fit: BoxFit.cover,
+                //       height: widgetHeight(110),
+                //       width: widgetWidth(85),
+                //     ),
+                //   ),
+                // ),
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Container(
-                    decoration:
-                        BoxDecoration(borderRadius: BorderRadius.circular(10)),
-                    child: Image.asset(
-                      imagePath.toString(),
-                      fit: BoxFit.cover,
-                      height: widgetHeight(110),
-                      width: widgetWidth(85),
-                    ),
+                  borderRadius: const BorderRadius.only(topLeft:Radius.circular(10),topRight: Radius.circular(10),bottomLeft: Radius.circular(10),bottomRight: Radius.circular(10)),
+                  child:  Image.network(
+                    imageUrl,
+                    height: widgetHeight(110),
+                    width: widgetWidth(90),
+                    fit: BoxFit.cover,
                   ),
                 ),
                 SizedBox(
@@ -99,16 +108,16 @@ class CustomTile extends StatelessWidget {
                       SizedBox(
                         height: widgetHeight(10),
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(right: widgetWidth(105)),
-                        child: Text(
-                          '${reviewRating.toString()} ⭐',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              color: electricianServiceRatingColor,
-                              fontSize: 14, fontFamily: 'Poppins'),
-                        ),
-                      ),
+                      // Padding(
+                      //   padding: EdgeInsets.only(right: widgetWidth(105)),
+                      //   child: Text(
+                      //     '${reviewRating.toString()} ⭐',
+                      //     style: TextStyle(
+                      //         fontWeight: FontWeight.w500,
+                      //         color: electricianServiceRatingColor,
+                      //         fontSize: 14, fontFamily: 'Poppins'),
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),

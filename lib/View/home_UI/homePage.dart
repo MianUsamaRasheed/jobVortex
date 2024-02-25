@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jobvortex/Controller/client_data_controller.dart';
 import 'package:jobvortex/Model/custom_widgets/customs.dart';
 import 'package:jobvortex/Model/utils/colors.dart';
 import 'package:jobvortex/Model/utils/dimension.dart';
@@ -10,12 +11,14 @@ import 'package:jobvortex/View/home_UI/shared_Ui_components/homePageDivider.dart
 import 'package:jobvortex/View/home_UI/shared_Ui_components/offersCard.dart';
 import 'package:jobvortex/View/home_UI/shared_Ui_components/servicesCard.dart';
 import 'package:jobvortex/View/home_UI/shared_Ui_components/homePageText.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ClientModel>(context);
     initMediaQuerySize(context);
     List navigationList = const [
       MaidService(),
@@ -63,8 +66,8 @@ class HomePage extends StatelessWidget {
                                         SizedBox(
                                           width: widgetWidth(20),
                                         ),
-                                        const PoppinsTextStyle(
-                                        text: "Usama !",
+                                        PoppinsTextStyle(
+                                        text: "${provider.clientName} !",
                                         textSize: 20,
                                         color: Colors.black,
                                         isBold: true),
@@ -88,9 +91,14 @@ class HomePage extends StatelessWidget {
                       SizedBox(
                         width: widgetWidth(30),
                       ),
-                      const CircleAvatar(
-                        radius: 50,
-                        backgroundImage: AssetImage('images/clientPic.jpg'),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                        child:  Image.network(
+                          provider.imageUrl!,
+                          height: widgetHeight(110),
+                          width: widgetWidth(90),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ],
                   ),
